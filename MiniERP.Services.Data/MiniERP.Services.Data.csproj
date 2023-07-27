@@ -1,9 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\MiniERP.Common.csproj" />
+    <ProjectReference Include="..\Mini ERP\Mini ERP.csproj" />
+    <ProjectReference Include="..\MiniERP.Data.Models\MiniERP.Data.Models.csproj" />
+    <ProjectReference Include="..\MiniERP_Data\MiniERP.Data.csproj" />
+  </ItemGroup>
 
 </Project>

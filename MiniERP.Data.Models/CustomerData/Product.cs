@@ -11,18 +11,16 @@ namespace MiniERP.Data.Models.CustomerData
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		[MaxLength(GeneralConstants.Category.NameMaxLength)]
+		[MaxLength(GeneralConstants.NameMaxLength)]
 		public string Name { get; set; } = null!;
 
-		[MaxLength(GeneralConstants.Category.NameMaxLength)]
+		[MaxLength(GeneralConstants.NameMaxLength)]
 		public string? Description { get; set; }
 		public decimal Price { get; set; }
 		public int Quantity { get; set; }
 
-		[Required]
-        public TypeOfUnit TypeOfUnit { get; set; }=null!;
 
-		[MaxLength(GeneralConstants.Category.URL_MaxLenght)]
+		[MaxLength(GeneralConstants.URL_MaxLenght)]
         public string? Image { get; set; }
 
         public int OrderId { get; set; }

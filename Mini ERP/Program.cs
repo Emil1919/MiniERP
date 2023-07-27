@@ -10,7 +10,7 @@ namespace Mini_ERP
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<MiniERP_DbContext>(options =>
                 options.UseSqlServer(connectionString));
@@ -33,7 +33,7 @@ namespace Mini_ERP
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+           
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -42,7 +42,7 @@ namespace Mini_ERP
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                
                 app.UseHsts();
             }
 

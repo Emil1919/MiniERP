@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data.Interfaces
 {
-	internal interface IInvoiceService
+	public interface IInvoiceService
 	{
 	}
 }

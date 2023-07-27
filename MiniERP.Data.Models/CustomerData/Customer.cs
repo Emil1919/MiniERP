@@ -11,19 +11,19 @@ namespace MiniERP.Data.Models.CustomerData
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(GeneralConstants.Category.NameMaxLength)]
+        [MaxLength(GeneralConstants.NameMaxLength)]
         public string Name { get; set; } = null!;
         [Required]
-        [MaxLength(GeneralConstants.Category.NameMaxLength)]
+        [MaxLength(GeneralConstants.NameMaxLength)]
         public string City { get; set; } = null!;
         [Required]
-        [MaxLength(GeneralConstants.Category.NameMaxLength)]
+        [MaxLength(GeneralConstants.NameMaxLength)]
         public string Address { get; set; } = null!;
         [Required]
-        [MaxLength(GeneralConstants.Category.NameMaxLength)]
+        [MaxLength(GeneralConstants.NameMaxLength)]
         public string Manager { get; set; } = null!;
 
-        [MaxLength(GeneralConstants.Category.PhoneNumber)]
+        [MaxLength(GeneralConstants.PhoneNumber)]
         public string PhoneNumber { get; set; } = null!;
 
 

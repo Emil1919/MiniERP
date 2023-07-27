@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\MiniERP.Common.csproj" />
+    <ProjectReference Include="..\MiniERP.Data.Models\MiniERP.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

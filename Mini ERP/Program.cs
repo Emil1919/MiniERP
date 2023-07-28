@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mini_ERP.Data;
-
+using MiniERP.Services.Data;
 namespace Mini_ERP
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
@@ -29,7 +29,9 @@ namespace Mini_ERP
                 })
 
                 .AddEntityFrameworkStores<MiniERP_DbContext>();
+            builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.IProductService,MiniERP.Services.Data.ProductService>();
             builder.Services.AddControllersWithViews();
+
 
             var app = builder.Build();
 

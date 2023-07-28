@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MiniERP.Data.Models.CustomerData
+namespace MiniERP.Data.Models
 {
     [Comment("Поръчки на клиентите на дружеството")]
     public class Order

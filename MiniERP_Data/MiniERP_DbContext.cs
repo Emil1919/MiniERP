@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MiniERP.Data.Models.CustomerData;
-using MiniERP.Data.Models.OwnerData;
+using MiniERP.Data.Models;
 
 namespace Mini_ERP.Data
 {
-	public class MiniERP_DbContext : IdentityDbContext
+    public class MiniERP_DbContext : IdentityDbContext
 	{
 		public MiniERP_DbContext(DbContextOptions<MiniERP_DbContext> options)
 			: base(options)

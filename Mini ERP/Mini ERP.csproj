@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\MiniERP.Common.csproj" />
+    <ProjectReference Include="..\MiniERP.Services.Data\MiniERP.Services.Data.csproj" />
     <ProjectReference Include="..\MiniERP.Web.ViewModels\MiniERP.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MiniERP_Data\MiniERP.Data.csproj" />
   </ItemGroup>

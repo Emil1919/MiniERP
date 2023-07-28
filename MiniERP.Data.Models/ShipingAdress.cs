@@ -3,7 +3,7 @@ using MiniERP.Common.GeneralConstants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MiniERP.Data.Models.CustomerData
+namespace MiniERP.Data.Models
 {
     public class ShipingAdress
     {

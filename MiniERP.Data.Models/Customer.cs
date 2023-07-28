@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using MiniERP.Common.GeneralConstants;
 
-namespace MiniERP.Data.Models.CustomerData
+namespace MiniERP.Data.Models
 {
     public class Customer
     {

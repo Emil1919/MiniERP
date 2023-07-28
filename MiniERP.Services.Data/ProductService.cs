@@ -1,5 +1,7 @@
-﻿using Mini_ERP.Data;
-using MiniERP.Data.Models.CustomerData;
+﻿using Microsoft.EntityFrameworkCore;
+using Mini_ERP.Data;
+using MiniERP.Data.Models;
+using MiniERP.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,19 @@ namespace MiniERP.Services.Data
         {
             this.dbContext = dbContext;
         }
-        public async Task < HashSet<Product>> GetAllProducts()
+        public async Task < IEnumerable<ProductViewModel>> GetAllProducts()
 		{
-			return await dbContext.Products().ToHashSetAsync();
-			
+			return await dbContext.Products.Select(x => new ProductViewModel
+			{
+				Id = x.Id,
+				Name = x.Name,
+				Description = x.Description,
+				Price = x.Price,
+				Quantity = x.Quantity,
+				Image = x.Image
+			}).ToListAsync();
+
+
 		}
 	}
 }

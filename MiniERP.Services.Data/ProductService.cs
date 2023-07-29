@@ -18,7 +18,7 @@ namespace MiniERP.Services.Data
             this.dbContext = dbContext;
         }
 
-		public async Task AddProduct(ProductViewModel product)
+		public  Task AddProduct(ProductViewModel product)
 		{
 			Product newProduct = new Product
 			{
@@ -29,8 +29,9 @@ namespace MiniERP.Services.Data
 				Image = product.Image
 				
 			};
-			await dbContext.Products.AddAsync(newProduct);
-			await dbContext.SaveChangesAsync();
+			 dbContext.Products.Add(newProduct);
+			 dbContext.SaveChanges();
+			return Task.CompletedTask;
 		}
 
 		public async Task < IEnumerable<ProductViewModel>> GetAllProducts()

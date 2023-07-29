@@ -9,6 +9,7 @@ namespace MiniERP.Services.Data.Interfaces
 {
 	public interface IProductService
 	{
+		public Task AddProduct(ProductViewModel product);
 		public  Task<IEnumerable<ProductViewModel>> GetAllProducts();
 	}
 }

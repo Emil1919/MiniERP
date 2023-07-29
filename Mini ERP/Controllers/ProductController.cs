@@ -27,5 +27,15 @@ namespace Mini_ERP.Controllers
 
 			return View(product);
 		}
+		[HttpPost]
+		public IActionResult AddProduct(ProductViewModel product)
+		{
+			if (ModelState.IsValid)
+			{
+				_productService.AddProduct(product);
+				return RedirectToAction("AllProducts");
+			}
+			return View(product);
+		}
 	}
 }

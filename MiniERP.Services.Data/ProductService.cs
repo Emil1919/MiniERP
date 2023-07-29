@@ -17,7 +17,23 @@ namespace MiniERP.Services.Data
         {
             this.dbContext = dbContext;
         }
-        public async Task < IEnumerable<ProductViewModel>> GetAllProducts()
+
+		public async Task AddProduct(ProductViewModel product)
+		{
+			Product newProduct = new Product
+			{
+				Name = product.Name,
+				Description = product.Description,
+				Price = product.Price,
+				Quantity = product.Quantity,
+				Image = product.Image
+				
+			};
+			await dbContext.Products.AddAsync(newProduct);
+			await dbContext.SaveChangesAsync();
+		}
+
+		public async Task < IEnumerable<ProductViewModel>> GetAllProducts()
 		{
 			return await dbContext.Products.Select(x => new ProductViewModel
 			{

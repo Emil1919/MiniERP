@@ -3,6 +3,7 @@
 	ViewData["Title"] = "Home Page";
 	var products = Model.ToList();
 }
+<a class="btn btn-primary" asp-controller="Product" asp-action="AddProduct">Add Product</a>
 @if (!products.Any())
 {
 	<div class="mt-4 p-5 bg-light">

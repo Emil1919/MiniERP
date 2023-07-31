@@ -21,7 +21,9 @@ namespace MiniERP.Web.ViewModels
 		[MaxLength(GeneralConstants.URL_MaxLenght)]
 		public string? Image { get; set; }
 
-		
+        public bool IsNew { get; set; }
 
-	}
+
+
+    }
 }

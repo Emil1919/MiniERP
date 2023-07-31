@@ -18,9 +18,10 @@ namespace MiniERP.Data.Models
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+		public bool IsNew { get; set; }
 
 
-        [MaxLength(GeneralConstants.URL_MaxLenght)]
+		[MaxLength(GeneralConstants.URL_MaxLenght)]
         public string? Image { get; set; }
 
         public int OrderId { get; set; }

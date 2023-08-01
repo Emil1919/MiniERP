@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ProductViewModel>
+
 @{
 	ViewData["Title"] = "Home Page";
 	var products = Model.ToList();
@@ -9,7 +10,7 @@
 	<div class="mt-4 p-5 bg-light">
 		<h1 class="display-4">All products of the company!</h1>
 		<p class="lead">
-			There are no houses in the system currently available
+			There are no products in the system currently available
 			so why don't you just add one?
 		</p>
 		<hr class="my-4">
@@ -17,8 +18,10 @@
 	</div>
 }
 <div class="mb-5"></div>
+else
+{
 
-<section style="background-color: #eee;">
+<section style="background-color: #0d6efd;">
 	<div class="text-center container py-5">
 		<h4 class="mt-4 mb-5"><strong>Bestsellers</strong></h4>
 
@@ -30,6 +33,7 @@
 </div>
 	</div>
 </section>
+}
 
 	
 

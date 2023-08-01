@@ -9,7 +9,7 @@ namespace MiniERP.Web.ViewModels
 		public int Id { get; set; }
 		[Required]
 		[MaxLength(GeneralConstants.NameMaxLength)]
-		[Display(Name = "Име")]
+		[Display(Name = "Name")]
 		[MinLength(GeneralConstants.NameMinLength)]
 		public string Name { get; set; } = null!;
 

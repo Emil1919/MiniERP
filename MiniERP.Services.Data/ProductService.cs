@@ -26,7 +26,8 @@ namespace MiniERP.Services.Data
 				Description = product.Description,
 				Price = product.Price,
 				Quantity = product.Quantity,
-				Image = product.Image
+				Image = product.Image,
+				IsNew = product.IsNew
 				
 			};
 			 dbContext.Products.Add(newProduct);
@@ -43,7 +44,8 @@ namespace MiniERP.Services.Data
 				Description = x.Description,
 				Price = x.Price,
 				Quantity = x.Quantity,
-				Image = x.Image
+				Image = x.Image,
+				IsNew=x.IsNew
 			}).ToListAsync();
 
 

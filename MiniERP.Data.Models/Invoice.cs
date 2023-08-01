@@ -21,7 +21,10 @@ namespace MiniERP.Data.Models
         public Customer Customer { get; set; } = null!;
         public List<Product> Products { get; set; } = new List<Product>();
 
-        public decimal Price { get; set; }
+        public decimal PriceWhitOutVAT { get; set; }
         public decimal TotalPrice { get; set; }
+
+        public bool IsPaid { get; set; }
+        public DateTime DateOfInvoice { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model  IEnumerable<InvoiceViewModel>
+@{
+	ViewData["Title"] = "All Invoices";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Invoice Number</th>
+			<th scope="col">Date</th>
+            <th scope="col">Customer</th>
+			<th scope="col">TotalPrice</th>
+			<th scope="col">IsPaid</th>
+        </tr>
+    </thead>
+<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<th scope="row">@item.Id</th>
+				<td>@item.DateOfInvoice</td>
+				<td>@item.CustomerId</td>
+				<td>@item.TotalPrice</td>
+				<td>@item.IsPaid</td>
+			</tr>
+		}
+	</tbody>
+</table>

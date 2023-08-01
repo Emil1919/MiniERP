@@ -30,6 +30,7 @@ namespace Mini_ERP
 
                 .AddEntityFrameworkStores<MiniERP_DbContext>();
             builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.IProductService,MiniERP.Services.Data.ProductService>();
+            builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.IInvoiceService,MiniERP.Services.Data.InvoiceService>();
             builder.Services.AddControllersWithViews();
 
 

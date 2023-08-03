@@ -1,4 +1,10 @@
-﻿@model ProductViewModel
+﻿@model ProductViewModel;
+
+
+<div class="col-3">
+	<img class="card-img-bottom" style="width: 20rem;"
+		 src="@Model.Image" alt="Product Image">
+</div>
 <div class="row">
 	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
 		<form method="post">
@@ -37,7 +43,7 @@
 			</div>
 			
 			<div class="text-center">
-				<input class="btn btn-primary mt-3" type="submit" value="Save" />
+				<input class="btn btn-warning mt-3" type="submit" value="Etit" />
 			</div>
 		</form>
 	</div>

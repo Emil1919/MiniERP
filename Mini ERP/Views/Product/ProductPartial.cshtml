@@ -23,13 +23,14 @@
             </a>
         </div>
         <div class="card-body">
-            <a href="" class="text-reset">
+            
                 <h5 class="card-title mb-3">@Model.Name</h5>
-            </a>
-            <a href="" class="text-reset">
-                <p>@Model.Description</p>
-            </a>
+            
+            
             <h6 class="mb-3">@Model.Price $</h6>
+
+            <a class="ml-2 btn btn-success" asp-area="" asp-controller="Product" asp-action="Info"> Info </a>
+            <a class="ml-2 btn btn-warning" asp-area="" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.Id"> Edit </a>
         </div>
     </div>
 </div>

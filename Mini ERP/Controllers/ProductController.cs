@@ -6,7 +6,7 @@ using MiniERP.Web.ViewModels;
 namespace Mini_ERP.Controllers
 {
 	[Authorize]
-	public class ProductController : Controller
+	public class ProductController : BaseController
 	{
 		private readonly IProductService _productService;
         public ProductController( IProductService productService)
@@ -37,5 +37,21 @@ namespace Mini_ERP.Controllers
 			}
 			return View(product);
 		}
+		[HttpGet]
+		public IActionResult EditProduct(int id)
+		{
+			if (_productService.Exists(id).Result)
+			{
+				ProductViewModel product =  _productService.GetProduct(id).Result;
+				return View(product);
+			}
+			else
+			{
+				return RedirectToAction("AllProducts");
+			}
+
+			
+		}
+
 	}
 }

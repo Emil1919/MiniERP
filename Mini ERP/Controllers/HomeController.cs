@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MiniERP.Web.ViewModels;
 using System.Diagnostics;
 
 
 namespace Mini_ERP.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
     {
         
 
@@ -13,8 +14,9 @@ namespace Mini_ERP.Controllers
         {
            
         }
-        
 
+        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             

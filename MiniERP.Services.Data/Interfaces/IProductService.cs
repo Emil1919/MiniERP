@@ -11,5 +11,7 @@ namespace MiniERP.Services.Data.Interfaces
 	{
 		public Task AddProduct(ProductViewModel product);
 		public  Task<IEnumerable<ProductViewModel>> GetAllProducts();
+		public Task <ProductViewModel> GetProduct(int id);
+		public Task<bool> Exists(int id);
 	}
 }

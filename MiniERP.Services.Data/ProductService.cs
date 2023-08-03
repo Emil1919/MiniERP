@@ -50,5 +50,30 @@ namespace MiniERP.Services.Data
 
 
 		}
+
+		public async Task<bool> Exists(int id)
+		{
+			return await dbContext.Products.AnyAsync(x => x.Id == id);
+		}
+
+		public async Task <ProductViewModel> GetProduct(int id)
+		{
+
+			
+			{
+				return await dbContext.Products.Where(x => x.Id == id).Select(x => new ProductViewModel
+				{
+					Id = x.Id,
+					Name = x.Name,
+					Description = x.Description,
+					Price = x.Price,
+					Quantity = x.Quantity,
+					Image = x.Image,
+					IsNew = x.IsNew
+					
+				}).FirstOrDefaultAsync();
+			}
+			
+		}
 	}
 }

@@ -4,7 +4,7 @@ using MiniERP.Web.ViewModels;
 
 namespace Mini_ERP.Controllers
 {
-	public class InvoiceController : Controller
+	public class InvoiceController : BaseController
 	{
 		private readonly IInvoiceService _invoiceService;
         public InvoiceController(IInvoiceService invoiceService)

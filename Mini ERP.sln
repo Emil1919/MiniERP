@@ -26,7 +26,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniERP.Web.ViewModels", "M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B3ED3D20-4BE3-483F-AD5E-2D4068BECC05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.Services.Data", "MiniERP.Services.Data\MiniERP.Services.Data.csproj", "{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniERP.Services.Data", "MiniERP.Services.Data\MiniERP.Services.Data.csproj", "{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D82AD275-C2A6-41B1-8F22-30ABE8CE09AC}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

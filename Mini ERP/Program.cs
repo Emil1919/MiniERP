@@ -59,7 +59,7 @@ namespace Mini_ERP
 
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
-
+            
             app.Run();
         }
     }

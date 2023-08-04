@@ -1,7 +1,13 @@
 ﻿@model  IEnumerable<InvoiceViewModel>
 @{
+	
 	ViewData["Title"] = "All Invoices";
 }
+
+<div> 
+	<a class="btn btn-primary"  asp-area="" asp-controller="Invoice" asp-action="AddInvoice">Add Invoice</a>
+	
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -10,6 +16,7 @@
             <th scope="col">Customer</th>
 			<th scope="col">TotalPrice</th>
 			<th scope="col">IsPaid</th>
+			<th scope="col">Option</th>
         </tr>
     </thead>
 <tbody>
@@ -21,6 +28,7 @@
 				<td>@item.CustomerId</td>
 				<td>@item.TotalPrice</td>
 				<td>@item.IsPaid</td>
+				<td><a class="btn btn-primary" asp-area="" asp-controller="Invoice" asp-action="EditInvoice">Edit</a></td>
 			</tr>
 		}
 	</tbody>

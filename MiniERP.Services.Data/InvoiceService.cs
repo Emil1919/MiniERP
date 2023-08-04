@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mini_ERP.Data;
+using MiniERP.Data.Models;
 using MiniERP.Services.Data.Interfaces;
 using MiniERP.Web.ViewModels;
 using System;
@@ -19,10 +20,7 @@ namespace MiniERP.Services.Data
         {
             this.dbContext = dbContext;
         }
-        public Task AddInvoice(InvoiceViewModel invoice)
-		{
-			throw new NotImplementedException();
-		}
+        
 
 		public Task DeleteInvoice(InvoiceViewModel invoice)
 		{
@@ -42,18 +40,12 @@ namespace MiniERP.Services.Data
 				InvoiceNumber = x.InvoiceNumber,
 				OrderId = x.OrderId,
 				CustomerId = x.CustomerId,
-				Products = x.Products.Select(p => new ProductViewModel
-				{
-					Id = p.Id,
-					Name = p.Name,
-					Description = p.Description,
-					Price = p.Price,
-					Quantity = p.Quantity,
-					Image = p.Image,
-					IsNew = p.IsNew
-				}).ToList(),
 				PriceWhitOutVAT = x.PriceWhitOutVAT,
-				TotalPrice = x.TotalPrice
+				TotalPrice = x.TotalPrice,
+				IsPaid = x.IsPaid,
+				DateOfInvoice = x.DateOfInvoice
+				
+
 			}).ToListAsync();
 			
 			
@@ -62,6 +54,40 @@ namespace MiniERP.Services.Data
 		public Task<InvoiceViewModel> GetInvoice(int id)
 		{
 			throw new NotImplementedException();
+		}
+
+		async Task<bool> IInvoiceService.AddInvoice(InvoiceViewModel invoice)
+		{
+			if (invoice == null)
+			{
+				return await Task.FromResult(false);
+			}
+			else
+			{
+				int lastInvoiceNumber=0;
+				if (this.dbContext.Invoices.FirstOrDefault()!=null)
+				{
+					lastInvoiceNumber = await this.dbContext.Invoices.MaxAsync(x => x.InvoiceNumber);
+				}
+				
+
+				Invoice newInvoice = new Invoice
+				{
+					
+					InvoiceNumber = lastInvoiceNumber+1,
+					CustomerId = invoice.CustomerId,
+					OrderId = invoice.OrderId,
+					TotalPrice = invoice.TotalPrice,
+					IsPaid = false,
+					DateOfInvoice = DateTime.Now,
+					PriceWhitOutVAT =  invoice.TotalPrice/1.2m 
+					
+					
+				};
+				  this.dbContext.Invoices.Add(newInvoice);
+				this.dbContext.SaveChanges();
+				return await Task.FromResult(true);
+			}
 		}
 	}
 }

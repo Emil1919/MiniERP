@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mini_ERP.Data;
 
@@ -11,9 +12,10 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    partial class MiniERP_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230804225100_7")]
+    partial class _7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -294,6 +296,10 @@ namespace MiniERP.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderId");
+
                     b.ToTable("Invoices");
 
                     b.HasComment("Фактури на клиентите на дружеството");
@@ -385,6 +391,9 @@ namespace MiniERP.Data.Migrations
                         .HasMaxLength(2048)
                         .HasColumnType("nvarchar(2048)");
 
+                    b.Property<int?>("InvoiceId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsNew")
                         .HasColumnType("bit");
 
@@ -403,6 +412,8 @@ namespace MiniERP.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
 
                     b.ToTable("Products");
 
@@ -500,11 +511,42 @@ namespace MiniERP.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
+                {
+                    b.HasOne("MiniERP.Data.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniERP.Data.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
                 {
                     b.HasOne("MiniERP.Data.Models.Product", null)
                         .WithMany("OrderedProducts")
                         .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Product", b =>
+                {
+                    b.HasOne("MiniERP.Data.Models.Invoice", null)
+                        .WithMany("Products")
+                        .HasForeignKey("InvoiceId");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Product", b =>

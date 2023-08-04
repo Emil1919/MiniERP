@@ -10,16 +10,14 @@ namespace MiniERP.Data.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string InvoiceNumber { get; set; } = null!;
+        public int InvoiceNumber { get; set; } 
         [Required]
-        [ForeignKey(nameof(Order))]
+        
         public int OrderId { get; set; }
-        public Order Order { get; set; } = null!;
+ 
         [Required]
-        [ForeignKey(nameof(Customer))]
+        
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; } = null!;
-        public List<Product> Products { get; set; } = new List<Product>();
 
         public decimal PriceWhitOutVAT { get; set; }
         public decimal TotalPrice { get; set; }

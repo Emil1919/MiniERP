@@ -10,8 +10,9 @@ namespace MiniERP.Services.Data.Interfaces
 	public interface IInvoiceService
 
 	{
+		
 		Task<IEnumerable<InvoiceViewModel>> GetAllInvoices();
-		//	Task AddInvoice(InvoiceViewModel invoice);
+		Task <bool> AddInvoice(InvoiceViewModel invoice);
 		//	Task<InvoiceViewModel> GetInvoice(int id);
 		//	Task EditInvoice(InvoiceViewModel invoice);
 		//	Task DeleteInvoice(InvoiceViewModel invoice);

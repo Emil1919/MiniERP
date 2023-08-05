@@ -29,6 +29,8 @@ namespace MiniERP.Services.Data
 				Image = product.Image,
 				IsNew = product.IsNew
 				
+				
+				
 			};
 			 dbContext.Products.Add(newProduct);
 			 dbContext.SaveChanges();

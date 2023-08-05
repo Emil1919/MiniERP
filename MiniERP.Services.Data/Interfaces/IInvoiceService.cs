@@ -11,11 +11,12 @@ namespace MiniERP.Services.Data.Interfaces
 
 	{
 		
+		Task<bool> IsInvoiceExist(int id);
 		Task<IEnumerable<InvoiceViewModel>> GetAllInvoices();
 		Task <bool> AddInvoice(InvoiceViewModel invoice);
-		//	Task<InvoiceViewModel> GetInvoice(int id);
-		//	Task EditInvoice(InvoiceViewModel invoice);
-		//	Task DeleteInvoice(InvoiceViewModel invoice);
+		Task<InvoiceViewModel> GetInvoice(int invoiceNumber);
+		Task EditInvoice(InvoiceViewModel invoice);
+		Task DeleteInvoice(InvoiceViewModel invoice);
 		
 	}
 }

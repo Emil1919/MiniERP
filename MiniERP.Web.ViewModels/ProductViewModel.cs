@@ -13,6 +13,7 @@ namespace MiniERP.Web.ViewModels
 		[MinLength(GeneralConstants.NameMinLength)]
 		public string Name { get; set; } = null!;
 
+
 		[MaxLength(GeneralConstants.NameMaxLength)]
 		public string? Description { get; set; }
 		public decimal Price { get; set; }

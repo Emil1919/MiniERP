@@ -10,7 +10,7 @@ namespace MiniERP.Web.ViewModels
 	public class InvoiceViewModel
 	{
 		
-		public int Id { get; set; }
+		
 		
 		public int InvoiceNumber { get; set; }
 		[Required]

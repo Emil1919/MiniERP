@@ -15,7 +15,7 @@ namespace MiniERP.Services.Data
 	
 	public class InvoiceService : IInvoiceService
 	{
-		private readonly Mini_ERP.Data.MiniERP_DbContext dbContext;
+		private readonly MiniERP_DbContext dbContext;
         public InvoiceService(MiniERP_DbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -29,14 +29,26 @@ namespace MiniERP.Services.Data
 
 		public Task EditInvoice(InvoiceViewModel invoice)
 		{
-			throw new NotImplementedException();
+			
+			
+				Invoice editedInvoice = dbContext.Invoices.FirstOrDefaultAsync(x => x.InvoiceNumber == invoice.InvoiceNumber).Result;
+				editedInvoice.CustomerId = invoice.CustomerId;
+				editedInvoice.OrderId = invoice.OrderId;
+				editedInvoice.TotalPrice = invoice.TotalPrice;
+				
+				dbContext.Invoices.Update(editedInvoice);
+				dbContext.SaveChanges();
+			
+			return Task.CompletedTask;
+
+			
 		}
 
 		public async Task<IEnumerable<InvoiceViewModel>> GetAllInvoices()
 		{
 			  return await this.dbContext.Invoices.Select(x => new InvoiceViewModel
 			{
-				Id = x.Id,
+				
 				InvoiceNumber = x.InvoiceNumber,
 				OrderId = x.OrderId,
 				CustomerId = x.CustomerId,
@@ -51,12 +63,28 @@ namespace MiniERP.Services.Data
 			
 		}
 
-		public Task<InvoiceViewModel> GetInvoice(int id)
+		public async Task<InvoiceViewModel> GetInvoice(int invoiceNumber)
 		{
-			throw new NotImplementedException();
+			InvoiceViewModel thisInvoice= await dbContext.Invoices.FirstOrDefaultAsync(x => x.InvoiceNumber == invoiceNumber).ContinueWith(x => new InvoiceViewModel
+			{
+                
+                InvoiceNumber = x.Result.InvoiceNumber,
+                OrderId = x.Result.OrderId,
+                CustomerId = x.Result.CustomerId,
+                PriceWhitOutVAT = x.Result.PriceWhitOutVAT,
+                TotalPrice = x.Result.TotalPrice,
+                IsPaid = x.Result.IsPaid,
+                DateOfInvoice = x.Result.DateOfInvoice
+            });
+			return thisInvoice;
 		}
 
-		async Task<bool> IInvoiceService.AddInvoice(InvoiceViewModel invoice)
+        public async Task<bool> IsInvoiceExist(int id)
+        {
+           return await this.dbContext.Invoices.AnyAsync(x => x.InvoiceNumber == id);
+        }
+
+        async Task<bool> IInvoiceService.AddInvoice(InvoiceViewModel invoice)
 		{
 			if (invoice == null)
 			{
@@ -80,11 +108,13 @@ namespace MiniERP.Services.Data
 					TotalPrice = invoice.TotalPrice,
 					IsPaid = false,
 					DateOfInvoice = DateTime.Now,
-					PriceWhitOutVAT =  invoice.TotalPrice/1.2m 
+					PriceWhitOutVAT =  invoice.TotalPrice,
 					
 					
+
 				};
-				  this.dbContext.Invoices.Add(newInvoice);
+				
+				this.dbContext.Invoices.Add(newInvoice);
 				this.dbContext.SaveChanges();
 				return await Task.FromResult(true);
 			}

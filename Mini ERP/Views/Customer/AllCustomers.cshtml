@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CustomerViewModel>
+
+
+@{
+	ViewData["Title"] = "All Customers";
+	var customers = Model.ToList();
+}
+<a class="btn btn-primary" asp-controller="Customer" asp-action="CreateCustomer">Add Client</a>
+@if (!customers.Any())
+{
+	<div class="mt-4 p-5 bg-light">
+		<h1 class="display-4">All clients of the company!</h1>
+		<p class="lead">
+			There are no clints in the system currently available
+			so why don't you just add one?
+		</p>
+		<hr class="my-4">
+		
+	</div>
+}
+<div class="mb-5"></div>
+
+<section style="background-color: white;">
+	<div class="text-center container py-5">
+		<h4 class="mt-4 mb-5"><strong>Top Clients</strong></h4>
+
+		<div class="card-group">
+			@for (int i = 0; i < customers.Count(); i++)
+			{
+				<partial name="CustomerPartial" model="@customers[i]" />
+			}
+		</div>
+	</div>
+</section>

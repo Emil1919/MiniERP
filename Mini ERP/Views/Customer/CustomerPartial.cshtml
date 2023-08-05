@@ -1,0 +1,20 @@
+﻿
+@model CustomerViewModel 
+<div>
+
+    <div class="card border-primary mb-6" style="max-width: 18rem;">
+        <div class="card-header">@Model.Name</div>
+        <div class="card-body text-primary">
+        <h6 class="card-title" style="color:lightslategrey">Vat Reg:</h6>
+            <h4 class="card-title"> @Model.VatNumber</h4>
+            <p class="card-text"> Manager: @Model.Manager</p>
+        </div>
+        <section>
+        <a class="ml-2 btn btn-success" asp-area="" asp-controller="Customer" asp-action="Info" asp-route-id="@Model.Id"> Info </a>
+        <a class="ml-2 btn btn-warning" asp-area="" asp-controller="Customer" asp-action="EditCustomer" asp-route-id="@Model.Id"> Edit </a>
+        </section>
+    </div>
+    
+
+    
+</div>

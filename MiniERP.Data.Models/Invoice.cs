@@ -12,17 +12,15 @@ namespace MiniERP.Data.Models
         [Required]
         public int InvoiceNumber { get; set; } 
         [Required]
-        
         public int OrderId { get; set; }
- 
         [Required]
-        
         public int CustomerId { get; set; }
-
-        public decimal PriceWhitOutVAT { get; set; }
-        public decimal TotalPrice { get; set; }
-
-        public bool IsPaid { get; set; }
+		[Required]
+		public decimal PriceWhitOutVAT { get; set; }
+		[Required]
+		public decimal TotalPrice { get; set; }
+		[Required]
+		public bool IsPaid { get; set; }
         public DateTime DateOfInvoice { get; set; }
     }
 }

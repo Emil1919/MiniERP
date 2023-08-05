@@ -35,22 +35,26 @@ namespace Mini_ERP.Controllers
 			}
 			return View(invoice);
 		}
-		//[HttpGet]
-		//public IActionResult EditInvoice(int id)
-		//{
-		//	InvoiceViewModel invoice = _invoiceService.GetInvoice(id);
-		//	return View(invoice);
-		//}
-		//[HttpPost]
-		//public IActionResult EditInvoice(InvoiceViewModel invoice)
-		//{
-		//	if (ModelState.IsValid)
-		//	{
-		//		_invoiceService.EditInvoice(invoice);
-		//		return RedirectToAction("AllInvoices");
-		//	}
-		//	return View(invoice);
-		//}
+		[HttpGet]
+		public IActionResult EditInvoice(int id)
+		{
+			if (!invoiceService.IsInvoiceExist(id).Result)
+			{
+                return  RedirectToAction("AllInvoices");
+            }
+			InvoiceViewModel invoice = invoiceService.GetInvoice(id).Result;
+			return View(invoice);
+		}
+		[HttpPost]
+		public IActionResult EditInvoice(InvoiceViewModel invoice)
+		{
+			if (ModelState.IsValid)
+			{
+				invoiceService.EditInvoice(invoice);
+				return RedirectToAction("AllInvoices");
+			}
+			return View(invoice);
+		}
 		//[HttpGet]
 		//public IActionResult DeleteInvoice(int id)
 		//{

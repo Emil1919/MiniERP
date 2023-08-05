@@ -1,21 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿
 using MiniERP.Common.GeneralConstants;
+using System.ComponentModel.DataAnnotations;
 
-namespace MiniERP.Data.Models
+namespace MiniERP.Web.ViewModels
 {
-    public class Customer
+    public class CustomerViewModel
     {
-        [Comment("Клиенти на дружеството с референция към приходните документи, поръчки и адреси за доставка")]
-
-        [Key]
         public int Id { get; set; }
         [Required]
-        public string VatNumber { get; set; } = null!;
-        [Required]
         [MaxLength(GeneralConstants.NameMaxLength)]
+
         public string Name { get; set; } = null!;
         [Required]
+        public string VatNumber { get; set; } = null!;
+		[Required]
         [MaxLength(GeneralConstants.NameMaxLength)]
         public string City { get; set; } = null!;
         [Required]
@@ -27,14 +25,5 @@ namespace MiniERP.Data.Models
 
         [MaxLength(GeneralConstants.PhoneNumber)]
         public string PhoneNumber { get; set; } = null!;
-
-
-
-        List<Invoice> Invoices { get; set; } = new List<Invoice>();
-        List<Order> Orders { get; set; } = new List<Order>();
-        List<ShipingAdress> ShipingAdresses { get; set; } = new List<ShipingAdress>();
-
-
-
     }
 }

@@ -18,17 +18,40 @@
 		
 	</div>
 }
-<div class="mb-5"></div>
 
-<section style="background-color: white;">
-	<div class="text-center container py-5">
-		<h4 class="mt-4 mb-5"><strong>Top Clients</strong></h4>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2>Client List</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>VAT Number</th>
+                        <th>Manager</th>
+                        <th>City</th>
+                        <th>Adress</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var client in Model)
+                    {
+                        <tr>
+                            <td>@client.Name</td>
+                            <td>@client.VatNumber</td>
+                            <td>@client.Manager</td>
+                            <td>@client.City</td>
+                            <td>@client.Address</td>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-		<div class="card-group">
-			@for (int i = 0; i < customers.Count(); i++)
-			{
-				<partial name="CustomerPartial" model="@customers[i]" />
-			}
-		</div>
-	</div>
-</section>
+<!-- Add Bootstrap JS and jQuery (required for some Bootstrap features) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

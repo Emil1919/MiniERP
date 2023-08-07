@@ -54,6 +54,7 @@ namespace MiniERP.Services.Data
             customer.Address = input.Address;
             customer.Manager = input.Manager;
             customer.PhoneNumber = input.PhoneNumber;
+
             dbContext.Customers.Update(customer);
             dbContext.SaveChanges();
             return Task.FromResult(true);
@@ -70,7 +71,9 @@ namespace MiniERP.Services.Data
                 Address = x.Address,
                 Manager = x.Manager,
                 PhoneNumber = x.PhoneNumber,
-                VatNumber = x.VatNumber
+                VatNumber = x.VatNumber,
+                TotalTurnover = x.TotalTurnover
+                
 
             }).ToListAsync();
             return customers;

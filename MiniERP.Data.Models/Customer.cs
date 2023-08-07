@@ -35,6 +35,9 @@ namespace MiniERP.Data.Models
         public List<Invoice> Invoices { get; set; } = new List<Invoice>();
         public List<ShipingAdress> ShipingAdresses { get; set; } = new List<ShipingAdress>();
 
+        public decimal TotalTurnover { get; set; }
+
+
 
 
         

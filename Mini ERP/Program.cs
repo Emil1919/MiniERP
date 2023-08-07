@@ -19,7 +19,7 @@ namespace Mini_ERP
             
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => 
-                {
+            {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireDigit = true;
                     options.Password.RequireLowercase = false;
@@ -28,7 +28,7 @@ namespace Mini_ERP
                     options.Password.RequireUppercase = false;
                     options.Password.RequireLowercase = false;
                 
-                })
+            })
 
                 .AddEntityFrameworkStores<MiniERP_DbContext>();
             builder.Services.AddScoped<IProductService,ProductService>();

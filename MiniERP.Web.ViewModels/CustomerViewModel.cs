@@ -30,5 +30,7 @@ namespace MiniERP.Web.ViewModels
 
         [MaxLength(GeneralConstants.PhoneNumber)]
         public string PhoneNumber { get; set; } = null!;
+
+        public decimal TotalTurnover { get; set; }
     }
 }

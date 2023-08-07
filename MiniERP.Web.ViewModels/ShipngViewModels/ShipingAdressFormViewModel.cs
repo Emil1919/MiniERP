@@ -1,11 +1,14 @@
 ﻿using MiniERP.Common;
+
 using System.ComponentModel.DataAnnotations;
 
+/// <summary>
+/// This class is used to represent the data for the shiping address form.
+/// /// </summary>
 
-namespace MiniERP.Web.ViewModels
+namespace MiniERP.Web.ViewModels.ShipngViewModels
 {
-	// Comment("Информация за адреса на доставката")
-	public class ShipingAddressViewModel
+	public class ShipingAdressFormViewModel
 	{
 		public int Id { get; set; }
 		[Required]
@@ -26,8 +29,7 @@ namespace MiniERP.Web.ViewModels
 		public string PhoneNumber { get; set; } = null!;
 		public string? Note { get; set; }
 
-		[Required]
-		public int CustomersId { get; set; }
-		
+
+		public HashSet<string> Clients { get; set; } = new HashSet<string>();
 	}
 }

@@ -12,8 +12,8 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    [Migration("20230727225409_1")]
-    partial class _1
+    [Migration("20230807124346_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,7 +226,7 @@ namespace MiniERP.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Customer", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -260,12 +260,16 @@ namespace MiniERP.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<string>("VatNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Invoice", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -276,14 +280,19 @@ namespace MiniERP.Data.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("InvoiceNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DateOfInvoice")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InvoiceNumber")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
 
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("PriceWhitOutVAT")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TotalPrice")
@@ -293,14 +302,15 @@ namespace MiniERP.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.ToTable("Invoices");
 
                     b.HasComment("Фактури на клиентите на дружеството");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Order", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -311,101 +321,16 @@ namespace MiniERP.Data.Migrations
                     b.Property<int>("CustomersId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("CustomersId");
 
                     b.ToTable("Orders");
 
                     b.HasComment("Поръчки на клиентите на дружеството");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Image")
-                        .HasMaxLength(2048)
-                        .HasColumnType("nvarchar(2048)");
-
-                    b.Property<int?>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.ToTable("Products");
-
-                    b.HasComment("Продукти на дружеството");
-                });
-
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.ShipingAdress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasComment("Адреси за доставка на клиентите на дружеството");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("CustomersId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Shippings");
-                });
-
-            modelBuilder.Entity("MiniERP.Data.Models.OwnerData.Owner", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Owner", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -450,6 +375,88 @@ namespace MiniERP.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Owners");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<bool>("IsNew")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Products");
+
+                    b.HasComment("Продукти на дружеството");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.ShipingAdress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Адреси за доставка на клиентите на дружеството");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("CustomersId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Shippings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -503,18 +510,18 @@ namespace MiniERP.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Invoice", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
                 {
-                    b.HasOne("MiniERP.Data.Models.CustomerData.Customer", "Customer")
-                        .WithMany()
+                    b.HasOne("MiniERP.Data.Models.Customer", "Customer")
+                        .WithMany("Invoices")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MiniERP.Data.Models.CustomerData.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("MiniERP.Data.Models.Order", "Order")
+                        .WithOne("Invoice")
+                        .HasForeignKey("MiniERP.Data.Models.Invoice", "OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -522,28 +529,36 @@ namespace MiniERP.Data.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Order", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
                 {
-                    b.HasOne("MiniERP.Data.Models.CustomerData.Product", null)
-                        .WithMany("OrderedProducts")
+                    b.HasOne("MiniERP.Data.Models.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Product", b =>
+                {
+                    b.HasOne("MiniERP.Data.Models.Order", null)
+                        .WithMany("Products")
                         .HasForeignKey("OrderId");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Product", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Customer", b =>
                 {
-                    b.HasOne("MiniERP.Data.Models.CustomerData.Invoice", null)
-                        .WithMany("Products")
-                        .HasForeignKey("InvoiceId");
+                    b.Navigation("Invoices");
+
+                    b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Invoice", b =>
+            modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
                 {
+                    b.Navigation("Invoice");
+
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("MiniERP.Data.Models.CustomerData.Product", b =>
-                {
-                    b.Navigation("OrderedProducts");
                 });
 #pragma warning restore 612, 618
         }

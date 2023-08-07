@@ -298,6 +298,11 @@ namespace MiniERP.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
                     b.ToTable("Invoices");
 
                     b.HasComment("Фактури на клиентите на дружеството");
@@ -314,12 +319,9 @@ namespace MiniERP.Data.Migrations
                     b.Property<int>("CustomersId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("CustomersId");
 
                     b.ToTable("Orders");
 
@@ -397,7 +399,7 @@ namespace MiniERP.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -407,6 +409,8 @@ namespace MiniERP.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Products");
 
@@ -504,16 +508,55 @@ namespace MiniERP.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
+                {
+                    b.HasOne("MiniERP.Data.Models.Customer", "Customer")
+                        .WithMany("Invoices")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MiniERP.Data.Models.Order", "Order")
+                        .WithOne("Invoice")
+                        .HasForeignKey("MiniERP.Data.Models.Invoice", "OrderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
                 {
-                    b.HasOne("MiniERP.Data.Models.Product", null)
-                        .WithMany("OrderedProducts")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("MiniERP.Data.Models.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Product", b =>
                 {
-                    b.Navigation("OrderedProducts");
+                    b.HasOne("MiniERP.Data.Models.Order", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Customer", b =>
+                {
+                    b.Navigation("Invoices");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
+                {
+                    b.Navigation("Invoice");
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

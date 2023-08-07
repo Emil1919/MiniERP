@@ -9,9 +9,12 @@ namespace MiniERP.Data.Models
     {
         [Key]
         public int Id { get; set; }
+
         [ForeignKey(nameof(Customer))]
         public int CustomersId { get; set; }
-        Customer Customer { get; set; } = null!;
-        List<Product> Products { get; set; } = new List<Product>();
+        public Customer Customer { get; set; } = null!;
+        public Invoice? Invoice { get; set; } = null!;
+        
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

@@ -1,9 +1,4 @@
 ﻿using MiniERP.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data.Interfaces
 {
@@ -11,12 +6,12 @@ namespace MiniERP.Services.Data.Interfaces
 
 	{
 		
-		Task<bool> IsInvoiceExist(int id);
-		Task<IEnumerable<InvoiceViewModel>> GetAllInvoices();
-		Task <bool> AddInvoice(InvoiceViewModel invoice);
-		Task<InvoiceViewModel> GetInvoice(int invoiceNumber);
-		Task EditInvoice(InvoiceViewModel invoice);
-		Task DeleteInvoice(InvoiceViewModel invoice);
+		public Task<bool> IsInvoiceExist(int id);
+		public Task<IEnumerable<InvoiceViewModel>> GetAllInvoices();
+		public Task <bool> AddInvoice(InvoiceViewModel invoice);
+		 public Task<InvoiceViewModel> GetInvoice(int invoiceNumber);
+		public Task EditInvoice(InvoiceViewModel invoice);
+		public Task DeleteInvoice(InvoiceViewModel invoice);
 		
 	}
 }

@@ -24,9 +24,8 @@ namespace MiniERP.Data.Models
 		[MaxLength(GeneralConstants.URL_MaxLenght)]
         public string? Image { get; set; }
 
-        public int OrderId { get; set; }
-        [ForeignKey(nameof(OrderId))]
-        public List<Order> OrderedProducts { get; set; } = new List<Order>();
+
+        
 
     }
 }

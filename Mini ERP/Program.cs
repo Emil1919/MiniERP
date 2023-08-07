@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mini_ERP.Data;
 using MiniERP.Services.Data;
+using MiniERP.Services.Data.Interfaces;
+
 namespace Mini_ERP
 {
 	public class Program
@@ -29,9 +31,9 @@ namespace Mini_ERP
                 })
 
                 .AddEntityFrameworkStores<MiniERP_DbContext>();
-            builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.IProductService,MiniERP.Services.Data.ProductService>();
-            builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.IInvoiceService,MiniERP.Services.Data.InvoiceService>();
-            builder.Services.AddScoped<MiniERP.Services.Data.Interfaces.ICustomerService,MiniERP.Services.Data.CustomerService>();
+            builder.Services.AddScoped<IProductService,ProductService>();
+            builder.Services.AddScoped<IInvoiceService,InvoiceService>();
+            builder.Services.AddScoped<IOrderService ,OrderService>();
             builder.Services.AddControllersWithViews();
 
 

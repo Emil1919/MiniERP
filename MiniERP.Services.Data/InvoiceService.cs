@@ -3,12 +3,7 @@ using Mini_ERP.Data;
 using MiniERP.Data.Models;
 using MiniERP.Services.Data.Interfaces;
 using MiniERP.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MiniERP.Services.Data
 {
@@ -35,6 +30,7 @@ namespace MiniERP.Services.Data
 				editedInvoice.CustomerId = invoice.CustomerId;
 				editedInvoice.OrderId = invoice.OrderId;
 				editedInvoice.TotalPrice = invoice.TotalPrice;
+				editedInvoice.DateOfInvoice = DateTime.Now;
 				
 				dbContext.Invoices.Update(editedInvoice);
 				dbContext.SaveChanges();
@@ -84,40 +80,24 @@ namespace MiniERP.Services.Data
            return await this.dbContext.Invoices.AnyAsync(x => x.InvoiceNumber == id);
         }
 
-        async Task<bool> IInvoiceService.AddInvoice(InvoiceViewModel invoice)
+        
+		public Task<bool> AddInvoice(InvoiceViewModel invoice)
 		{
-			if (invoice == null)
-			{
-				return await Task.FromResult(false);
-			}
-			else
-			{
-				int lastInvoiceNumber=0;
-				if (this.dbContext.Invoices.FirstOrDefault()!=null)
-				{
-					lastInvoiceNumber = await this.dbContext.Invoices.MaxAsync(x => x.InvoiceNumber);
-				}
-				
+			int lastInvoiceNumber = dbContext.Invoices.Max(x => x.InvoiceNumber);
 
-				Invoice newInvoice = new Invoice
-				{
-					
-					InvoiceNumber = lastInvoiceNumber+1,
-					CustomerId = invoice.CustomerId,
-					OrderId = invoice.OrderId,
-					TotalPrice = invoice.TotalPrice,
-					IsPaid = false,
-					DateOfInvoice = DateTime.Now,
-					PriceWhitOutVAT =  invoice.TotalPrice,
-					
-					
-
-				};
-				
-				this.dbContext.Invoices.Add(newInvoice);
-				this.dbContext.SaveChanges();
-				return await Task.FromResult(true);
-			}
+			Invoice newInvoice = new Invoice
+			{
+				InvoiceNumber = ++lastInvoiceNumber,
+				OrderId = invoice.OrderId,
+				CustomerId = invoice.CustomerId,
+				PriceWhitOutVAT = invoice.PriceWhitOutVAT,
+				TotalPrice = invoice.TotalPrice,
+				IsPaid = invoice.IsPaid,
+				DateOfInvoice = DateTime.Now
+			};
+			dbContext.Invoices.Add(newInvoice);
+			dbContext.SaveChanges();
+			return Task.FromResult(true);
 		}
 	}
 }

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OrderViewModel>
+@{
+
+	ViewData["Title"] = "All Orders";
+}
+
+<div>
+	<a class="btn btn-primary" asp-area="" asp-controller="Invoice" asp-action="AddInvoice">Add Invoice</a>
+
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Order Id</th>
+			<th scope="col">Customer</th>
+			<th scope="col">VAT Number</th>
+			<th scope="col">Town</th>
+			<th scope="col">Address</th>
+			<th scope="col">Option</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<th scope="row">@item.Id</th>
+				<td>@item.Customer.Name</td>
+				<td>@item.Customer.VatNumber</td>
+				<td>@item.Customer.City</td>
+				<td>@item.Customer.Address</td>
+				<td><a class="btn btn-primary" asp-area="" asp-controller="Order" asp-action="EditOrder" asp-route-id="@item.Id">Edit</a></td>
+			</tr>
+		}
+	</tbody>
+</table>
+

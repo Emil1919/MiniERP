@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
+    /// <summary>
+    /// This class describe the invoices of the company
+    /// </summary>
     [Comment("Фактури на клиентите на дружеството")]
     public class Invoice
     {

@@ -6,6 +6,10 @@ namespace MiniERP.Data.Models
 {
 	public class Customer
     {
+        /// <summary>
+        ///     This class describe the customers of the company with reference to the invoices, orders and shipping addresses
+        ///     </summary>
+
         [Comment("Клиенти на дружеството с референция към приходните документи, поръчки и адреси за доставка")]
 
         [Key]

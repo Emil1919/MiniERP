@@ -8,6 +8,10 @@ using MiniERP.Web.ViewModels;
 namespace MiniERP.Services.Data
 {
 	
+	// Coment: This class is used to create, edit and delete invoices.
+	/// <summary>
+	/// This class is used to create, edit and delete invoices.
+	/// </summary>
 	public class InvoiceService : IInvoiceService
 	{
 		private readonly MiniERP_DbContext dbContext;

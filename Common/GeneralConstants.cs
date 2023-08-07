@@ -2,6 +2,9 @@
 {
 	public static class GeneralConstants
 	{
+		/// <summary>
+		///  This class is used to store constants.
+		/// </summary>
 
 
 		public const int NameMinLength = 3;

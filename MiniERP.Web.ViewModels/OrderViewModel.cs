@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 namespace MiniERP.Web.ViewModels
 {
 	// Comment("Информация за поръчката")
+	/// <summary>
+	/// This class is used to transfer data from the database to the view.
+	/// </summary>
 	public class OrderViewModel
 	{
 		public int Id { get; set; }

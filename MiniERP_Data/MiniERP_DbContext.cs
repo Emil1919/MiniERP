@@ -45,7 +45,7 @@ namespace Mini_ERP.Data
 
 			
 
-			//builder.Entity<Order>().HasOne(o=>o.Invoice)
+			
 
 
 			base.OnModelCreating(builder);

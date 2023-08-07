@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data.Interfaces
 {
+    /// <summary>
+    ///  This interface is used for CustomerService
+    /// </summary>
     public interface ICustomerService
     {
+        
         Task<ICollection<CustomerViewModel>> GetAll();
         Task<CustomerViewModel> GetById(int id);
         Task<bool> Create(CustomerViewModel input);

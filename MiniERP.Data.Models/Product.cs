@@ -6,6 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MiniERP.Data.Models
 {
 	[Comment("Продукти на дружеството")]
+
+    /// <summary>
+    /// This class describe the products of the company
+    /// </summary>
     public class Product
     {
         [Key]

@@ -5,6 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
+    /// <summary>
+    /// This class describe the shipping address of the company
+    /// </summary>
 	public class ShipingAdress
     {
         [Comment("Адреси за доставка на клиентите на дружеството")]

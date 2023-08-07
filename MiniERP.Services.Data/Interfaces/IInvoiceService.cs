@@ -2,6 +2,9 @@
 
 namespace MiniERP.Services.Data.Interfaces
 {
+	/// <summary>
+	///  This interface is used for the InvoiceService
+	/// </summary>
 	public interface IInvoiceService
 
 	{

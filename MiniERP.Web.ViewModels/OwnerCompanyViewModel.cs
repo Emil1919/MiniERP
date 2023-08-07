@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿
 using System.ComponentModel.DataAnnotations;
 using MiniERP.Common;
 
 namespace MiniERP.Web.ViewModels
 {
 	// Comment("Информация за фирмата собственик")
+	/// <summary>
+	/// This class is used to transfer data from the controller to the view.
+	/// </summary>
 	public class OwnerCompanyViewModel
 	{
 		public Guid Id { get; set; }

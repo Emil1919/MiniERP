@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data.Interfaces
 {
+	/// <summary>
+	/// This interface is used for OrderService
+	/// </summary>
 	public interface IOrderService
 	{
 		public Task<bool> IsOrderExist(int id);

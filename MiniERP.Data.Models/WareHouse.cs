@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
+	/// <summary>
+	/// This class describe the warehouse of the company
+	/// </summary>
 	public class WareHouse
 	{
 		[Comment("Информация за склада")]

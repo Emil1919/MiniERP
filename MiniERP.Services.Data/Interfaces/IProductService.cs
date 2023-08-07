@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data.Interfaces
 {
+	/// <summary>
+	/// This interface is used to define the methods for the Product Service
+	/// </summary>
 	public interface IProductService
 	{
 		public Task AddProduct(ProductViewModel product);

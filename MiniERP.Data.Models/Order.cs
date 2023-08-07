@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
+    /// <summary>
+    /// This class describe the orders of the company
+    /// </summary>
+
     [Comment("Поръчки на клиентите на дружеството")]
     public class Order
     {

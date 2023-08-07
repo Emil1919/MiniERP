@@ -6,6 +6,9 @@ using MiniERP.Common;
 
 namespace MiniERP.Data.Models
 {
+    /// <summary>
+    /// 	/// This class describe the owners company
+    /// 		/// </summary>
 	public class OwnerCompany
     {
         [Comment("Данни за дружеството собственик")]

@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace MiniERP.Web.ViewModels
 {
     // Comment("Информация за клиента")
+    /// <summary>
+    ///   This  class is used to transfer data from the controller to the view.
+    ///   </summary>
+    
 	public class CustomerViewModel
     {
         public int Id { get; set; }

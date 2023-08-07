@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Services.Data
 {
+	// Coment( this class is responsible for the logic of the product)
+	/// <summary>
+	/// This class is responsible for the logic of the product
+	/// </summary>
 	public class ProductService: Interfaces.IProductService
 	{
 		private readonly MiniERP_DbContext dbContext;

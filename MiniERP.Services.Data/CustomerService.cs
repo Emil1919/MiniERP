@@ -3,14 +3,14 @@ using Mini_ERP.Data;
 using MiniERP.Data.Models;
 using MiniERP.Services.Data.Interfaces;
 using MiniERP.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MiniERP.Services.Data
 {
+    // This class is used to create, edit and delete customers.
+    /// <summary>
+    /// This class is used to create, edit and delete customers
+    /// </summary>
   
     public class CustomerService : ICustomerService
     {

@@ -7,6 +7,10 @@ using MiniERP.Web.ViewModels;
 namespace MiniERP.Services.Data
 {
 	
+	// Comment( This class )
+	/// <summary>
+	/// This class is used for OrderService
+	/// </summary>
 	public class OrderService : IOrderService
 	{
 		MiniERP_DbContext dbContext;

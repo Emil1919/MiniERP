@@ -5,6 +5,9 @@ using MiniERP.Common;
 namespace MiniERP.Web.ViewModels
 {
 	// Comment("Информация за продукта")
+	/// <summary>
+	/// This class is used to transfer data from the controller to the view.
+	/// </summary>
 	public class ProductViewModel
 	{
 		public int Id { get; set; }

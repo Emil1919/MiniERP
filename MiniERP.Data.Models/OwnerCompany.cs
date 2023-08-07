@@ -1,12 +1,14 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MiniERP.Common.GeneralConstants;
+using Microsoft.EntityFrameworkCore;
+using MiniERP.Common;
 
 namespace MiniERP.Data.Models
 {
-    public class OwnerCompany
+	public class OwnerCompany
     {
+        [Comment("Данни за дружеството собственик")]
         [Key]
         public Guid Id { get; set; }
         [Required]

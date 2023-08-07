@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MiniERP.Common.GeneralConstants;
+using MiniERP.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
-    public class ShipingAdress
+	public class ShipingAdress
     {
         [Comment("Адреси за доставка на клиентите на дружеството")]
 

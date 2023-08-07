@@ -15,7 +15,7 @@ namespace Mini_ERP.Data
 		public DbSet<Customer> Customers { get; set; } = null!;
 		public DbSet<Order> Orders { get; set; } = null!;
 		public DbSet<Product> Products { get; set; } = null!;
-		public DbSet<ShipingAdress> Shippings { get; set; } = null!;
+		public DbSet<ShipingAdress> ShippingAdresses { get; set; } = null!;
 		public DbSet<OwnerCompany> Companies { get; set; } = null!;
 
 		public DbSet<WareHouse> WareHouses { get; set; } = null!;
@@ -42,6 +42,7 @@ namespace Mini_ERP.Data
 				.WithOne(c=>c.Customer)
 				.HasForeignKey(c=>c.CustomersId)
 				.OnDelete(DeleteBehavior.Restrict);
+
 			
 
 			//builder.Entity<Order>().HasOne(o=>o.Invoice)

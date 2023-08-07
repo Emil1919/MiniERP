@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mini_ERP.Data;
 
@@ -11,9 +12,10 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    partial class MiniERP_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807181143_111")]
+    partial class _111
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -444,9 +446,6 @@ namespace MiniERP.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomersId")
                         .HasColumnType("int");
 
@@ -465,9 +464,7 @@ namespace MiniERP.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("ShippingAdresses");
+                    b.ToTable("Shippings");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.WareHouse", b =>
@@ -595,13 +592,6 @@ namespace MiniERP.Data.Migrations
                         .HasForeignKey("WareHouseId");
                 });
 
-            modelBuilder.Entity("MiniERP.Data.Models.ShipingAdress", b =>
-                {
-                    b.HasOne("MiniERP.Data.Models.Customer", null)
-                        .WithMany("ShipingAdresses")
-                        .HasForeignKey("CustomerId");
-                });
-
             modelBuilder.Entity("MiniERP.Data.Models.WareHouse", b =>
                 {
                     b.HasOne("MiniERP.Data.Models.OwnerCompany", "OwnerCompony")
@@ -618,8 +608,6 @@ namespace MiniERP.Data.Migrations
                     b.Navigation("Invoices");
 
                     b.Navigation("Orders");
-
-                    b.Navigation("ShipingAdresses");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Order", b =>

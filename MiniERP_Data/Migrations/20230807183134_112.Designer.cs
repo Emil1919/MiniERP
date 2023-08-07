@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mini_ERP.Data;
 
@@ -11,9 +12,10 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    partial class MiniERP_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807183134_112")]
+    partial class _112
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -467,7 +469,7 @@ namespace MiniERP.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("ShippingAdresses");
+                    b.ToTable("ShippingsAdresses");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.WareHouse", b =>

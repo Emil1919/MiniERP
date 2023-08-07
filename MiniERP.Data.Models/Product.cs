@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MiniERP.Common.GeneralConstants;
+using MiniERP.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiniERP.Data.Models
 {
-    [Comment("Продукти на дружеството")]
+	[Comment("Продукти на дружеството")]
     public class Product
     {
         [Key]

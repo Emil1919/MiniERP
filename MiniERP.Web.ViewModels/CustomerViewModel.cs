@@ -1,10 +1,11 @@
 ﻿
-using MiniERP.Common.GeneralConstants;
+using MiniERP.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace MiniERP.Web.ViewModels
 {
-    public class CustomerViewModel
+    // Comment("Информация за клиента")
+	public class CustomerViewModel
     {
         public int Id { get; set; }
         [Required]

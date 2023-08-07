@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MiniERP.Web.ViewModels
 {
+	// Comment("Информация за поръчката")
 	public class OrderViewModel
 	{
 		public int Id { get; set; }

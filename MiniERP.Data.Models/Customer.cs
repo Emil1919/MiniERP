@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using MiniERP.Common.GeneralConstants;
+using MiniERP.Common;
 
 namespace MiniERP.Data.Models
 {
-    public class Customer
+	public class Customer
     {
         [Comment("Клиенти на дружеството с референция към приходните документи, поръчки и адреси за доставка")]
 
@@ -29,6 +29,7 @@ namespace MiniERP.Data.Models
         public string PhoneNumber { get; set; } = null!;
         public List<Order> Orders { get; set; } = new List<Order>();
         public List<Invoice> Invoices { get; set; } = new List<Invoice>();
+        public List<ShipingAdress> ShipingAdresses { get; set; } = new List<ShipingAdress>();
 
 
 

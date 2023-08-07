@@ -1,9 +1,10 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
-using MiniERP.Common.GeneralConstants;
+using MiniERP.Common;
 
 namespace MiniERP.Web.ViewModels
 {
+	// Comment("Информация за продукта")
 	public class ProductViewModel
 	{
 		public int Id { get; set; }

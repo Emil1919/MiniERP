@@ -31,6 +31,8 @@
                         <th>Manager</th>
                         <th>City</th>
                         <th>Adress</th>
+                        <th>Total Turnover</th>
+                        <th>Option</th>
                         <!-- Add more columns as needed -->
                     </tr>
                 </thead>
@@ -43,6 +45,12 @@
                             <td>@client.Manager</td>
                             <td>@client.City</td>
                             <td>@client.Address</td>
+                            <td>@client.TotalTurnover</td>
+                            <td>
+								<a class="btn btn-warning" asp-controller="Customer" asp-action="EditCustomer" asp-route-id="@client.Id">Edit</a>
+								<a class="btn btn-danger" asp-controller="Customer" asp-action="DeleteCustomer" asp-route-id="@client.Id">Delete</a>
+                                <a class="btn btn-success" asp-controller="Customer" asp-action="InfoCustomer" asp-route-id="@client.Id">Info</a>
+                            </td>
                             <!-- Add more columns as needed -->
                         </tr>
                     }

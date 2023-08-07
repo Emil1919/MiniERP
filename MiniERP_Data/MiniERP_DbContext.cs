@@ -16,7 +16,10 @@ namespace Mini_ERP.Data
 		public DbSet<Order> Orders { get; set; } = null!;
 		public DbSet<Product> Products { get; set; } = null!;
 		public DbSet<ShipingAdress> Shippings { get; set; } = null!;
-		public DbSet<Owner> Owners { get; set; } = null!;
+		public DbSet<OwnerCompany> Companies { get; set; } = null!;
+
+		public DbSet<WareHouse> WareHouses { get; set; } = null!;
+
 		
 
 		protected override void OnModelCreating(ModelBuilder builder)

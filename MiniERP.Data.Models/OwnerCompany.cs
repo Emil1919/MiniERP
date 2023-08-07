@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +9,13 @@ using MiniERP.Common.GeneralConstants;
 
 namespace MiniERP.Data.Models
 {
-    public class Owner
+    public class OwnerCompany
     {
         [Key]
         public Guid Id { get; set; }
         [Required]
         [StringLength(GeneralConstants.NameMaxLength)]
-        public string Name { get; set; } = null!;
+        public string CompanyName { get; set; } = null!;
         [Required]
         [StringLength(GeneralConstants.NameMaxLength)]
         public string Address { get; set; } = null!;
@@ -33,6 +34,10 @@ namespace MiniERP.Data.Models
         [Required]
         [StringLength(GeneralConstants.NameMaxLength)]
         public string GeneralManager { get; set; } = null!;
+
+        [ForeignKey(nameof(OwnerCompany))]
+        public int WareHouseId { get; set; }
+        public List<WareHouse> WareHouses { get; set; } = null!;
 
     }
 }

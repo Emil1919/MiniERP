@@ -26,7 +26,7 @@ namespace MiniERP.Data.Models
 		[MaxLength(GeneralConstants.NameMaxLength)]
 
 		public string WareHouseManager { get; set; } = null!;
-		public List<Product> Products { get; set; } = null!;
+		
 		[ForeignKey(nameof(OwnerCompony))]
 		public Guid OwnerComponyId { get; set; }
 

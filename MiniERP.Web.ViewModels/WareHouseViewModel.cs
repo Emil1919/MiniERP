@@ -16,7 +16,7 @@ namespace MiniERP.Web.ViewModels
 	/// </summary>
 	public class WareHouseViewModel
 	{
-		public int Id { get; set; }
+		
 		[Required]
 		[MaxLength(GeneralConstants.NameMaxLength)]
 		[MinLength(GeneralConstants.NameMinLength)]
@@ -32,7 +32,7 @@ namespace MiniERP.Web.ViewModels
 
 		public string WareHouseManager { get; set; } = null!;
 		
-		public Guid OwnerComponyId { get; set; }
+		public List<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
 
 		
 	}

@@ -1,0 +1,33 @@
+﻿@model ProductViewModel;
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="card" style="width: 36rem;">
+			<img class="card-img-top" src="@Url.Content(Model.Image)" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">@Model.Name</h5>
+
+				
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Description:</h5>
+				<p class="card-text">@Model.Description</p>
+				<p class="card-text"><strong>Price:</strong> @Model.Price.ToString("C")</p>
+				<p class="card-text"><strong>Quantity:</strong> @Model.Quantity</p>
+				<p class="card-text"><strong>Is New:</strong> @Model.IsNew</p>
+				<p class="card-text"><strong>ID:</strong> @Model.Id</p>
+				<a class="ml-2 btn btn-success" asp-area="" asp-controller="Product" asp-action="All"> Back to All Products  </a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+

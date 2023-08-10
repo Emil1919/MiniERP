@@ -52,6 +52,29 @@ namespace Mini_ERP.Controllers
 
 			
 		}
+		[HttpPost]
+		public IActionResult EditProduct(ProductViewModel product)
+		{
+            if (ModelState.IsValid && _productService.Exists(product.Id).Result)
+			{
+                _productService.EditProduct(product);
+                return RedirectToAction("AllProducts");
+            }
+            return View(product);
+        }
+		[HttpGet]
+		public async Task <IActionResult>  InfoProduct (int id)
+		{
+            if (await _productService.Exists(id))
+			{
+                ProductViewModel product = await _productService.GetProduct(id);
+                return  View(product);
+            }
+            else
+			{
+                return RedirectToAction("AllProducts");
+            }
+        }
 
 	}
 }

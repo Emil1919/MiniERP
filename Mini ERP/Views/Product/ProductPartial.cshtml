@@ -29,8 +29,9 @@
             
             <h6 class="mb-3">@Model.Price $</h6>
 
-            <a class="ml-2 btn btn-success" asp-area="" asp-controller="Product" asp-action="Info"> Info </a>
+            <a class="ml-2 btn btn-success" asp-area="" asp-controller="Product" asp-action="InfoProduct" asp-route-id="@Model.Id" > Info  </a>
             <a class="ml-2 btn btn-warning" asp-area="" asp-controller="Product" asp-action="EditProduct" asp-route-id="@Model.Id"> Edit </a>
+            <a class="ml-2 btn btn-danger" asp-area="" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.Id"> Del </a>
         </div>
     </div>
 </div>

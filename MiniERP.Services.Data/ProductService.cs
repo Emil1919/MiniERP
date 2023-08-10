@@ -2,11 +2,7 @@
 using Mini_ERP.Data;
 using MiniERP.Data.Models;
 using MiniERP.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MiniERP.Services.Data
 {
@@ -65,9 +61,7 @@ namespace MiniERP.Services.Data
 		public async Task <ProductViewModel> GetProduct(int id)
 		{
 
-			
-			{
-				return await dbContext.Products.Where(x => x.Id == id).Select(x => new ProductViewModel
+				ProductViewModel currentProduct = await dbContext.Products.Where(x => x.Id == id).Select(x => new ProductViewModel
 				{
 					Id = x.Id,
 					Name = x.Name,
@@ -77,9 +71,24 @@ namespace MiniERP.Services.Data
 					Image = x.Image,
 					IsNew = x.IsNew
 					
-				}).FirstOrDefaultAsync();
-			}
+				}).FirstAsync();
+
+			return currentProduct;
+			
 			
 		}
-	}
+
+        public async Task EditProduct(ProductViewModel product)
+        {
+			var productToEdit =  await dbContext.Products.FirstOrDefaultAsync(x => x.Id == product.Id);
+			productToEdit.Name = product.Name;
+			productToEdit.Description = product.Description;
+			productToEdit.Price = product.Price;
+			productToEdit.Quantity = product.Quantity;
+			productToEdit.Image = product.Image;
+			productToEdit.IsNew = product.IsNew;
+			dbContext.Products.Update(productToEdit);
+			await dbContext.SaveChangesAsync();
+        }
+    }
 }

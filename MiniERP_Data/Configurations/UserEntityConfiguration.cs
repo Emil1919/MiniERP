@@ -33,10 +33,6 @@ namespace MiniERP.Data.Configurations
             Admin.PasswordHash = hasher.HashPassword(Admin, "admin");
             User.PasswordHash = hasher.HashPassword(User, "user");
             builder.HasData(Admin,User);
-           
-
-
-           
 
 
         }

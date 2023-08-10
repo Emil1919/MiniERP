@@ -13,7 +13,7 @@ namespace MiniERP.Data.Models
     {
         [Comment("Данни за дружеството собственик")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(GeneralConstants.NameMaxLength)]
         public string CompanyName { get; set; } = null!;

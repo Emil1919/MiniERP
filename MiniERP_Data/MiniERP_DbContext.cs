@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MiniERP.Data.Models;
 
@@ -25,28 +26,9 @@ namespace Mini_ERP.Data
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			
+			builder.ApplyConfigurationsFromAssembly(typeof(MiniERP_DbContext).Assembly);
 
-			builder.Entity<Invoice>()
-				.HasOne(i => i.Order)
-				.WithOne(o=>o.Invoice)
-				.HasForeignKey<Invoice>( v => v.OrderId)
-				.OnDelete(DeleteBehavior.Restrict);
-
-
-			builder.Entity<Customer>().HasMany(i=>i.Invoices)
-				.WithOne(c=>c.Customer)
-				.HasForeignKey(c=>c.CustomerId)
-				.OnDelete(DeleteBehavior.Restrict);
-
-			builder.Entity<Customer>().HasMany(o=>o.Orders)
-				.WithOne(c=>c.Customer)
-				.HasForeignKey(c=>c.CustomersId)
-				.OnDelete(DeleteBehavior.Restrict);
-
-			
-
-			
-
+	
 
 			base.OnModelCreating(builder);
 			

@@ -12,8 +12,8 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    [Migration("20230807223215_31")]
-    partial class _31
+    [Migration("20230810071733_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -270,6 +270,52 @@ namespace MiniERP.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Bul. Boris III 126",
+                            City = "Sofia",
+                            Manager = "Ivan Ivanov",
+                            Name = "Shopy Shop LTD",
+                            PhoneNumber = "0888888888",
+                            TotalTurnover = 0m,
+                            VatNumber = "200456789"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "Bul. Botevgradsko shose 22",
+                            City = "Sofia",
+                            Manager = "Petar Petrov",
+                            Name = "Good Shop2 LTD",
+                            PhoneNumber = "0888999999",
+                            TotalTurnover = 0m,
+                            VatNumber = "205179299"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "Bul. Bulgaria 1",
+                            City = "Sofia",
+                            Manager = "Georgi Georgiev",
+                            Name = "Best Shop3 LTD",
+                            PhoneNumber = "0888777777",
+                            TotalTurnover = 0m,
+                            VatNumber = "203174491"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "Bul. Bulgaria 1",
+                            City = "Sofia",
+                            Manager = "Georgi Georgiev",
+                            Name = "Best Shop4 LTD",
+                            PhoneNumber = "0888777777",
+                            TotalTurnover = 0m,
+                            VatNumber = "203174491"
+                        });
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Invoice", b =>
@@ -311,6 +357,41 @@ namespace MiniERP.Data.Migrations
                     b.ToTable("Invoices");
 
                     b.HasComment("Фактури на клиентите на дружеството");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            DateOfInvoice = new DateTime(2023, 8, 10, 10, 17, 33, 314, DateTimeKind.Local).AddTicks(8342),
+                            InvoiceNumber = 1,
+                            IsPaid = false,
+                            OrderId = 1,
+                            PriceWhitOutVAT = 833.3333333333333333333333333m,
+                            TotalPrice = 1000m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomerId = 2,
+                            DateOfInvoice = new DateTime(2023, 8, 11, 10, 17, 33, 314, DateTimeKind.Local).AddTicks(8383),
+                            InvoiceNumber = 2,
+                            IsPaid = false,
+                            OrderId = 2,
+                            PriceWhitOutVAT = 1666.6666666666666666666666667m,
+                            TotalPrice = 2000m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 3,
+                            DateOfInvoice = new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            InvoiceNumber = 3,
+                            IsPaid = false,
+                            OrderId = 3,
+                            PriceWhitOutVAT = 2500m,
+                            TotalPrice = 3000m
+                        });
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Order", b =>
@@ -331,14 +412,33 @@ namespace MiniERP.Data.Migrations
                     b.ToTable("Orders");
 
                     b.HasComment("Поръчки на клиентите на дружеството");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomersId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CustomersId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomersId = 3
+                        });
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.OwnerCompany", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasComment("Данни за дружеството собственик");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -382,6 +482,21 @@ namespace MiniERP.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = " Sofia Bul. Bulgaria 1",
+                            BankAccount = "BG80BNBG96611020345678",
+                            Bulstat = "BG201174491",
+                            CompanyName = "MiniERP",
+                            Email = "galiay@gmail.com",
+                            GeneralManager = "Galya Stoyanova",
+                            PhoneNumber = "0895600500",
+                            VatNumber = "201174491",
+                            WareHouseId = 1
+                        });
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Product", b =>
@@ -417,18 +532,55 @@ namespace MiniERP.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WareHouseId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("WareHouseId");
-
                     b.ToTable("Products");
 
                     b.HasComment("Продукти на дружеството");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Coca Cola Zero - sugar free",
+                            Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2S8cwpn-nqRTd2zPBlj-HSevRozPs5bUPeQ&usqp=CAU",
+                            IsNew = false,
+                            Name = "Coca Cola Zero 330ml",
+                            Price = 1.20m,
+                            Quantity = 1000
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Coca Cola - regular 135 cal.",
+                            Image = "https://drenhoreca.rs/images/product/original/0208-svrQ.png",
+                            IsNew = true,
+                            Name = "Coca Cola 500ml",
+                            Price = 1.29m,
+                            Quantity = 500
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Fanta Lemon 1500ml 555 cal.",
+                            Image = "https://avanti-bg.com/wp-content/uploads/2020/06/05400311.png",
+                            IsNew = true,
+                            Name = "Fanta Lemon",
+                            Price = 2.13m,
+                            Quantity = 250
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Fanta Orange 1500ml 631 cal.",
+                            Image = "https://www.cfacdn.com/img/order/menu/Online/Drinks/Bottled/Fanta_Orange_1080x1080.png",
+                            IsNew = true,
+                            Name = "Fanta Orange",
+                            Price = 2.19m,
+                            Quantity = 350
+                        });
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.ShipingAdress", b =>
@@ -495,8 +647,8 @@ namespace MiniERP.Data.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<Guid>("OwnerComponyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OwnerCompanyId")
+                        .HasColumnType("int");
 
                     b.Property<string>("WareHouseManager")
                         .IsRequired()
@@ -505,9 +657,19 @@ namespace MiniERP.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerComponyId");
+                    b.HasIndex("OwnerCompanyId");
 
                     b.ToTable("WareHouses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Sofia Bul. Bulgaria 1",
+                            Name = "Main WareHouse",
+                            OwnerCompanyId = 1,
+                            WareHouseManager = "Pesho Peshev"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -596,10 +758,6 @@ namespace MiniERP.Data.Migrations
                     b.HasOne("MiniERP.Data.Models.Order", null)
                         .WithMany("Products")
                         .HasForeignKey("OrderId");
-
-                    b.HasOne("MiniERP.Data.Models.WareHouse", null)
-                        .WithMany("Products")
-                        .HasForeignKey("WareHouseId");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.ShipingAdress", b =>
@@ -611,13 +769,13 @@ namespace MiniERP.Data.Migrations
 
             modelBuilder.Entity("MiniERP.Data.Models.WareHouse", b =>
                 {
-                    b.HasOne("MiniERP.Data.Models.OwnerCompany", "OwnerCompony")
+                    b.HasOne("MiniERP.Data.Models.OwnerCompany", "OwnerCompany")
                         .WithMany("WareHouses")
-                        .HasForeignKey("OwnerComponyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("OwnerCompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("OwnerCompony");
+                    b.Navigation("OwnerCompany");
                 });
 
             modelBuilder.Entity("MiniERP.Data.Models.Customer", b =>
@@ -639,11 +797,6 @@ namespace MiniERP.Data.Migrations
             modelBuilder.Entity("MiniERP.Data.Models.OwnerCompany", b =>
                 {
                     b.Navigation("WareHouses");
-                });
-
-            modelBuilder.Entity("MiniERP.Data.Models.WareHouse", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

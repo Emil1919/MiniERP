@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mini_ERP.Data;
+using MiniERP.Data.Models;
 using MiniERP.Services.Data;
 using MiniERP.Services.Data.Interfaces;
 
@@ -29,8 +30,8 @@ namespace Mini_ERP
                     options.Password.RequireLowercase = false;
                 
             })
+.AddEntityFrameworkStores<MiniERP_DbContext>();
 
-                .AddEntityFrameworkStores<MiniERP_DbContext>();
             builder.Services.AddScoped<IProductService,ProductService>();
             builder.Services.AddScoped<IInvoiceService,InvoiceService>();
             builder.Services.AddScoped<IOrderService ,OrderService>();

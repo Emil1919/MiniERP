@@ -49,6 +49,27 @@ namespace MiniERP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Данни за дружеството собственик")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Bulstat = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    VatNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BankAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GeneralManager = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    WareHouseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -59,48 +80,12 @@ namespace MiniERP.Data.Migrations
                     City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Manager = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false)
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    TotalTurnover = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Owners",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Bulstat = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    VatNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    BankAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GeneralManager = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Owners", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Shippings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false, comment: "Адреси за доставка на клиентите на дружеството")
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    PersonName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shippings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -210,6 +195,28 @@ namespace MiniERP.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WareHouses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Информация за склада")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    WareHouseManager = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    OwnerCompanyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WareHouses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WareHouses_Companies_OwnerCompanyId",
+                        column: x => x.OwnerCompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -228,6 +235,30 @@ namespace MiniERP.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Поръчки на клиентите на дружеството");
+
+            migrationBuilder.CreateTable(
+                name: "ShippingAdresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Адреси за доставка на клиентите на дружеството")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    City = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    PersonName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomersId = table.Column<int>(type: "int", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShippingAdresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShippingAdresses_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Invoices",
@@ -285,6 +316,63 @@ namespace MiniERP.Data.Migrations
                         principalColumn: "Id");
                 },
                 comment: "Продукти на дружеството");
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "Address", "BankAccount", "Bulstat", "CompanyName", "Email", "GeneralManager", "PhoneNumber", "VatNumber", "WareHouseId" },
+                values: new object[] { 1, " Sofia Bul. Bulgaria 1", "BG80BNBG96611020345678", "BG201174491", "MiniERP", "galiay@gmail.com", "Galya Stoyanova", "0895600500", "201174491", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Address", "City", "Manager", "Name", "PhoneNumber", "TotalTurnover", "VatNumber" },
+                values: new object[,]
+                {
+                    { 1, "Bul. Boris III 126", "Sofia", "Ivan Ivanov", "Shopy Shop LTD", "0888888888", 0m, "200456789" },
+                    { 2, "Bul. Botevgradsko shose 22", "Sofia", "Petar Petrov", "Good Shop2 LTD", "0888999999", 0m, "205179299" },
+                    { 3, "Bul. Bulgaria 1", "Sofia", "Georgi Georgiev", "Best Shop3 LTD", "0888777777", 0m, "203174491" },
+                    { 4, "Bul. Bulgaria 1", "Sofia", "Georgi Georgiev", "Best Shop4 LTD", "0888777777", 0m, "203174491" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Description", "Image", "IsNew", "Name", "OrderId", "Price", "Quantity" },
+                values: new object[,]
+                {
+                    { 1, "Coca Cola Zero - sugar free", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2S8cwpn-nqRTd2zPBlj-HSevRozPs5bUPeQ&usqp=CAU", false, "Coca Cola Zero 330ml", null, 1.20m, 1000 },
+                    { 2, "Coca Cola - regular 135 cal.", "https://drenhoreca.rs/images/product/original/0208-svrQ.png", true, "Coca Cola 500ml", null, 1.29m, 500 },
+                    { 3, "Fanta Lemon 1500ml 555 cal.", "https://avanti-bg.com/wp-content/uploads/2020/06/05400311.png", true, "Fanta Lemon", null, 2.13m, 250 },
+                    { 4, "Fanta Orange 1500ml 631 cal.", "https://www.cfacdn.com/img/order/menu/Online/Drinks/Bottled/Fanta_Orange_1080x1080.png", true, "Fanta Orange", null, 2.19m, 350 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Orders",
+                columns: new[] { "Id", "CustomersId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 },
+                    { 3, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WareHouses",
+                columns: new[] { "Id", "Address", "Name", "OwnerCompanyId", "WareHouseManager" },
+                values: new object[] { 1, "Sofia Bul. Bulgaria 1", "Main WareHouse", 1, "Pesho Peshev" });
+
+            migrationBuilder.InsertData(
+                table: "Invoices",
+                columns: new[] { "Id", "CustomerId", "DateOfInvoice", "InvoiceNumber", "IsPaid", "OrderId", "PriceWhitOutVAT", "TotalPrice" },
+                values: new object[] { 1, 1, new DateTime(2023, 8, 10, 10, 17, 33, 314, DateTimeKind.Local).AddTicks(8342), 1, false, 1, 833.3333333333333333333333333m, 1000m });
+
+            migrationBuilder.InsertData(
+                table: "Invoices",
+                columns: new[] { "Id", "CustomerId", "DateOfInvoice", "InvoiceNumber", "IsPaid", "OrderId", "PriceWhitOutVAT", "TotalPrice" },
+                values: new object[] { 2, 2, new DateTime(2023, 8, 11, 10, 17, 33, 314, DateTimeKind.Local).AddTicks(8383), 2, false, 2, 1666.6666666666666666666666667m, 2000m });
+
+            migrationBuilder.InsertData(
+                table: "Invoices",
+                columns: new[] { "Id", "CustomerId", "DateOfInvoice", "InvoiceNumber", "IsPaid", "OrderId", "PriceWhitOutVAT", "TotalPrice" },
+                values: new object[] { 3, 3, new DateTime(2023, 8, 12, 0, 0, 0, 0, DateTimeKind.Local), 3, false, 3, 2500m, 3000m });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -345,6 +433,16 @@ namespace MiniERP.Data.Migrations
                 name: "IX_Products_OrderId",
                 table: "Products",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShippingAdresses_CustomerId",
+                table: "ShippingAdresses",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WareHouses_OwnerCompanyId",
+                table: "WareHouses",
+                column: "OwnerCompanyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -368,13 +466,13 @@ namespace MiniERP.Data.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Owners");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Shippings");
+                name: "ShippingAdresses");
+
+            migrationBuilder.DropTable(
+                name: "WareHouses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -384,6 +482,9 @@ namespace MiniERP.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Customers");

@@ -27,10 +27,10 @@ namespace MiniERP.Data.Models
 
 		public string WareHouseManager { get; set; } = null!;
 		
-		[ForeignKey(nameof(OwnerCompony))]
-		public Guid OwnerComponyId { get; set; }
+		[ForeignKey(nameof(OwnerCompany))]
+		public int OwnerCompanyId { get; set; }
 
-        public OwnerCompany OwnerCompony { get; set; } = null!;
+        public OwnerCompany OwnerCompany { get; set; } = null!;
 
 
 

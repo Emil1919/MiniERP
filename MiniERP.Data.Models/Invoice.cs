@@ -39,5 +39,6 @@ namespace MiniERP.Data.Models
         public DateTime DateOfInvoice { get; set; }
 
         
+        
     }
 }

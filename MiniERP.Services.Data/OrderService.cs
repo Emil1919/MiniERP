@@ -19,9 +19,43 @@ namespace MiniERP.Services.Data
         {
             this.dbContext = dbContext;
         }
-        public Task<bool> AddOrder(OrderViewModel order)
+		public async Task<bool> AddOrder(OrderFormViewModel orderFormViewModel)
 		{
-			throw new NotImplementedException();
+			int productInOrder = 0;
+			decimal totalPrice = 0.0m;
+			foreach (var product in orderFormViewModel.SelectedProducts)
+			{
+				if( product.Quantity > 0 )
+				{
+					productInOrder=+product.Quantity;
+				}
+			}
+			Order order = new Order();
+			if (orderFormViewModel.SelectedClientId == 0 || productInOrder<1 )
+			{
+				return false;
+			}
+			else
+			{
+				order.Customer = await dbContext.Customers.FindAsync(orderFormViewModel.SelectedClientId);
+				foreach (var product in orderFormViewModel.SelectedProducts)
+				{
+					order.Products.Add(dbContext.Products.Find(product.Id));
+					Product productInBase=dbContext.Products.Find(product.Id);
+					productInBase.Quantity -= product.Quantity;
+					dbContext.Products.Update(productInBase);
+					totalPrice += product.Price * product.Quantity;
+
+					
+				}
+				order.TotalPrice = totalPrice;
+				dbContext.Orders.Add(order);
+				if (dbContext.SaveChanges() > 0)
+					return true;
+				else
+					return false;
+				
+			}
 		}
 
 		public Task DeleteOrder(OrderViewModel order)
@@ -48,6 +82,7 @@ namespace MiniERP.Services.Data
 					VatNumber = x.Customer.VatNumber,
 					Address = x.Customer.Address,
 					City = x.Customer.City
+					
 
 				},
 				Products = x.Products.Select(p => new ProductViewModel

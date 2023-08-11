@@ -1,9 +1,5 @@
 ﻿using MiniERP.Web.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MiniERP.Services.Data.Interfaces
 {
@@ -14,7 +10,7 @@ namespace MiniERP.Services.Data.Interfaces
 	{
 		public Task<bool> IsOrderExist(int id);
 		public Task<IEnumerable<OrderViewModel>> GetAllOrders();
-		public Task<bool> AddOrder(OrderViewModel order);
+		public Task<bool> AddOrder(OrderFormViewModel orderFormViewModel);
 		public Task<OrderViewModel> GetOrder(int id);
 		public Task EditOrder(OrderViewModel order);
 		public Task DeleteOrder(OrderViewModel order);

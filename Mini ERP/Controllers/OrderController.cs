@@ -27,6 +27,24 @@ namespace Mini_ERP.Controllers
 			OrderFormViewModel orderFormViewModel = orderService.GetOrderForm().Result;
 			return View(orderFormViewModel);
 		}
+		[HttpPost]
+		public async Task<IActionResult> AddOrder(OrderFormViewModel orderFormViewModel)
+		{
+			
+			
+				bool isAddedOrder=await orderService.AddOrder(orderFormViewModel);
+				if ( isAddedOrder == true)
+				{ 
+				return RedirectToAction("AllOrders");
+				}
+				else
+				{
+					// da se dobavi error message
+					return View("ErrorInOrder");
+				}
+			
+			
+		}
 		public IActionResult EditOrder()
 		{
 			return View();

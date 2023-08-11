@@ -1,6 +1,6 @@
 ﻿@model OrderFormViewModel
 
-<form asp-controller="Orders" asp-action="SubmitOrder" method="post" class="mt-5">
+<form asp-controller="Order" asp-action="AddOrder" method="post" class="mt-5">
 	<div class="form-group d-flex justify-content-between">
 		<label for="client">Select Client:</label>
 		<select class="form-control" asp-for="@Model.SelectedClientId">

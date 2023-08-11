@@ -21,5 +21,6 @@ namespace MiniERP.Data.Models
         
         public List<Product> Products { get; set; } = new List<Product>();
         public bool IsDeleted { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

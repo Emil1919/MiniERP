@@ -57,7 +57,7 @@ namespace Mini_ERP.Controllers
 		}
 
 
-		[HttpGet]
+		
 		public IActionResult PayInvoice(int id)
 		{
 			invoiceService.PayInvoice(id);

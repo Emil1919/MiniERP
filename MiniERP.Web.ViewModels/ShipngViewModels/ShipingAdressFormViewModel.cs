@@ -24,7 +24,7 @@ namespace MiniERP.Web.ViewModels.ShipngViewModels
 		[MinLength(GeneralConstants.NameMinLength)]
 		public string PersonName { get; set; } = null!;
 
-		[MaxLength(GeneralConstants.PhoneNumber)]
+		[MaxLength(GeneralConstants.PhoneNumberMax)]
 		[Phone]
 		public string PhoneNumber { get; set; } = null!;
 		public string? Note { get; set; }

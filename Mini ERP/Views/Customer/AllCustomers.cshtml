@@ -15,49 +15,52 @@
 			so why don't you just add one?
 		</p>
 		<hr class="my-4">
-		
+
 	</div>
 }
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <h2>Client List</h2>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>VAT Number</th>
-                        <th>Manager</th>
-                        <th>City</th>
-                        <th>Adress</th>
-                        <th>Total Turnover</th>
-                        <th>Option</th>
-                        <!-- Add more columns as needed -->
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var client in Model)
-                    {
-                        <tr>
-                            <td>@client.Name</td>
-                            <td>@client.VatNumber</td>
-                            <td>@client.Manager</td>
-                            <td>@client.City</td>
-                            <td>@client.Address</td>
-                            <td>@client.TotalTurnover</td>
-                            <td>
+	<div class="row justify-content-center">
+		<div class="col-md-10">
+			<h2>Client List</h2>
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>VAT Number</th>
+						<th>Manager</th>
+						<th>City</th>
+						<th>Adress</th>
+						<th>Total Turnover</th>
+						<th>Phone number</th>
+						<th>Option</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var client in Model)
+					{
+						<tr>
+							<td>@client.Name</td>
+							<td>@client.VatNumber</td>
+							<td>@client.Manager</td>
+							<td>@client.City</td>
+							<td>@client.Address</td>
+							<td>@client.TotalTurnover</td>
+							<td>@client.PhoneNumber</td>
+							<td>
 								<a class="btn btn-warning" asp-controller="Customer" asp-action="EditCustomer" asp-route-id="@client.Id">Edit</a>
 								<a class="btn btn-danger" asp-controller="Customer" asp-action="DeleteCustomer" asp-route-id="@client.Id">Delete</a>
-                                <a class="btn btn-success" asp-controller="Customer" asp-action="InfoCustomer" asp-route-id="@client.Id">Info</a>
-                            </td>
-                            <!-- Add more columns as needed -->
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+								<a class="btn btn-success" asp-controller="Customer" asp-action="InfoCustomer" asp-route-id="@client.Id">Info</a>
+							</td>
+
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div h4> *You can delete custemer only if the customer don't have order or invoice.</div>
+	</div>
 </div>
 
 <!-- Add Bootstrap JS and jQuery (required for some Bootstrap features) -->

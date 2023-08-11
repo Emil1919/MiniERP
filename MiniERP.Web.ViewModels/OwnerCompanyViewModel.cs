@@ -24,7 +24,7 @@ namespace MiniERP.Web.ViewModels
 		public string Bulstat { get; set; } = null!;
 		public string? VatNumber { get; set; }
 		[Required]
-		[StringLength(GeneralConstants.PhoneNumber)]
+		[StringLength(GeneralConstants.PhoneNumberMax)]
 		public string PhoneNumber { get; set; } = null!;
 		[Required]
 		[StringLength(GeneralConstants.EmailMaxLength)]

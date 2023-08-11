@@ -107,9 +107,9 @@ namespace MiniERP.Services.Data
 			return Task.FromResult(true);
 		}
 
-		public async Task PayInvoice(int invoiceId)
+		public async Task PayInvoice(int id)
 		{
-			Invoice invoiceForPay = dbContext.Invoices.Select(x => x).Where(x => x.Id == invoiceId).FirstOrDefault();
+			Invoice invoiceForPay = dbContext.Invoices.Select(x => x).Where(x => x.Id == id).FirstOrDefault();
 			if (invoiceForPay != null)
 			{
 				invoiceForPay.IsPaid = true;
@@ -120,7 +120,7 @@ namespace MiniERP.Services.Data
 				Customer customer = dbContext.Customers.FirstOrDefault(x => x.Id == invoiceForPay.CustomerId);
 				customer.TotalTurnover+= invoiceForPay.TotalPrice;
 				dbContext.Customers.Update(customer);
-				await dbContext.SaveChangesAsync();
+				 dbContext.SaveChanges();
 			}
 		}
 

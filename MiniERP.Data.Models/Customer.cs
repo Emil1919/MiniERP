@@ -29,7 +29,7 @@ namespace MiniERP.Data.Models
         [MaxLength(GeneralConstants.NameMaxLength)]
         public string Manager { get; set; } = null!;
 
-        [MaxLength(GeneralConstants.PhoneNumber)]
+        [MaxLength(GeneralConstants.PhoneNumberMax)]
         public string PhoneNumber { get; set; } = null!;
         public List<Order> Orders { get; set; } = new List<Order>();
         public List<Invoice> Invoices { get; set; } = new List<Invoice>();

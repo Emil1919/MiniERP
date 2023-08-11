@@ -24,7 +24,7 @@ namespace MiniERP.Data.Models
         [MaxLength(GeneralConstants.NameMaxLength)]
         public string PersonName { get; set; } = null!;
 
-        [MaxLength(GeneralConstants.PhoneNumber)]
+        [MaxLength(GeneralConstants.PhoneNumberMax)]
         public string PhoneNumber { get; set; } = null!;
         public string? Note { get; set; }
 

@@ -28,10 +28,12 @@
 				<td>@item.CustomerName</td>
 				<td>@item.TotalPrice</td>
 				<td>@item.IsPaid</td>
+				<td>
 				@if (item.IsPaid == false)
 				{
-					<td><a class="btn btn-success" asp-area="" asp-controller="Invoice" asp-action="PayInvoice" asp-route-id="@item.InvoiceNumber">Pay Invoice</a></td>
+						<a href="@Url.Action("PayInvoice", "Invoice", new { id = item.Id })" class="btn btn-success"> Pay Invoice</a>
 				}
+				</td>
 			</tr>
 		}
 	</tbody>

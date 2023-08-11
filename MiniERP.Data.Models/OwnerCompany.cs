@@ -39,6 +39,7 @@ namespace MiniERP.Data.Models
         [ForeignKey(nameof(OwnerCompany))]
         public int WareHouseId { get; set; }
         public List<WareHouse> WareHouses { get; set; } = null!;
+        public decimal Balance { get; set; }
 
     }
 }

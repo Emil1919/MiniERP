@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MiniERP.Web.ViewModels
 {
@@ -16,7 +13,7 @@ namespace MiniERP.Web.ViewModels
 	{
 		
 		
-		
+		public int Id { get; set; }
 		public int InvoiceNumber { get; set; }
 		[Required]
 		public string CustomerName { get; set; } = null!;

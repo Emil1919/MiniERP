@@ -49,7 +49,7 @@ namespace MiniERP.Services.Data
 		{
 			  return await this.dbContext.Invoices.Select(x => new InvoiceViewModel
 			{
-				
+				Id = x.Id,
 				InvoiceNumber = x.InvoiceNumber,
 				OrderId = x.OrderId,
 				CustomerId = x.CustomerId,
@@ -105,6 +105,51 @@ namespace MiniERP.Services.Data
 			dbContext.Invoices.Add(newInvoice);
 			dbContext.SaveChanges();
 			return Task.FromResult(true);
+		}
+
+		public async Task PayInvoice(int invoiceId)
+		{
+			Invoice invoiceForPay = dbContext.Invoices.Select(x => x).Where(x => x.Id == invoiceId).FirstOrDefault();
+			if (invoiceForPay != null)
+			{
+				invoiceForPay.IsPaid = true;
+				dbContext.Invoices.Update(invoiceForPay);
+				OwnerCompany myCompany= dbContext.Companies.Take(1).FirstOrDefault();
+				myCompany.Balance += invoiceForPay.TotalPrice;
+				dbContext.Companies.Update(myCompany);
+				Customer customer = dbContext.Customers.FirstOrDefault(x => x.Id == invoiceForPay.CustomerId);
+				customer.TotalTurnover+= invoiceForPay.TotalPrice;
+				dbContext.Customers.Update(customer);
+				await dbContext.SaveChangesAsync();
+			}
+		}
+
+		public Task<bool> AddInvoice(int orderId)
+		{
+			Order thisOrder = dbContext.Orders.FirstOrDefaultAsync(x => x.Id == orderId).Result;
+			if (thisOrder != null)
+			{
+				Invoice newInvoice = new Invoice
+				{
+					OrderId = thisOrder.Id,
+					CustomerId = thisOrder.CustomersId,
+					TotalPrice = thisOrder.TotalPrice,
+					IsPaid = false,
+					DateOfInvoice = DateTime.Now,
+					
+					
+				};
+				dbContext.Invoices.Add(newInvoice);
+				thisOrder.HasInvoice = true;
+				dbContext.Orders.Update(thisOrder);
+
+				dbContext.SaveChanges();
+				return Task.FromResult(true);
+			}
+			else
+			{
+				return Task.FromResult(false);
+			}
 		}
 	}
 }

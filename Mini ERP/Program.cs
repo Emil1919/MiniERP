@@ -37,6 +37,7 @@ namespace Mini_ERP
             builder.Services.AddScoped<IOrderService ,OrderService>();
             builder.Services.AddScoped<ICustomerService,CustomerService>();
             builder.Services.AddScoped<IWareHouseService,WareHouseService>();
+            
             builder.Services.AddControllersWithViews();
 
 

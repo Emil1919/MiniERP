@@ -4,12 +4,15 @@ using MiniERP.Web.ViewModels;
 
 namespace Mini_ERP.Controllers
 {
+
 	public class InvoiceController : BaseController
 	{
 		private readonly IInvoiceService invoiceService;
+
 		public InvoiceController(IInvoiceService invoiceService)
 		{
 			this.invoiceService = invoiceService;
+
 
 		}
 
@@ -19,29 +22,26 @@ namespace Mini_ERP.Controllers
 			IEnumerable<InvoiceViewModel> invoices = await invoiceService.GetAllInvoices();
 			return View(invoices);
 		}
-		[HttpGet]
-		public IActionResult AddInvoice()
+
+		// Use OrderId to create Invoice
+		public IActionResult AddInvoice(int id)
 		{
-			InvoiceViewModel invoice = new InvoiceViewModel();
-			return View(invoice);
-		}
-		[HttpPost]
-		public IActionResult AddInvoice(InvoiceViewModel invoice)
-		{
-			if (ModelState.IsValid)
+
+
+			if (invoiceService.AddInvoice(id).Result == true)
 			{
-				invoiceService.AddInvoice(invoice);
 				return RedirectToAction("AllInvoices");
 			}
-			return View(invoice);
+			return RedirectToAction("AllOrders","Order");
+
 		}
 		[HttpGet]
 		public IActionResult EditInvoice(int id)
 		{
 			if (!invoiceService.IsInvoiceExist(id).Result)
 			{
-                return  RedirectToAction("AllInvoices");
-            }
+				return RedirectToAction("AllInvoices");
+			}
 			InvoiceViewModel invoice = invoiceService.GetInvoice(id).Result;
 			return View(invoice);
 		}
@@ -55,6 +55,23 @@ namespace Mini_ERP.Controllers
 			}
 			return View(invoice);
 		}
+
+
+		[HttpGet]
+		public IActionResult PayInvoice(int id)
+		{
+			invoiceService.PayInvoice(id);
+			return RedirectToAction("AllInvoices");
+		}
+
+		//[HttpPost]
+		//public IActionResult PayInvoice(int invoiceId)
+		//{
+		//	invoiceService.PayInvoice(invoiceId);
+		//	return RedirectToAction("AllInvoices");
+		//}
+
+
 		//[HttpGet]
 		//public IActionResult DeleteInvoice(int id)
 		//{

@@ -24,6 +24,7 @@ namespace Mini_ERP.Controllers
             CustomerViewModel customer = new CustomerViewModel();
             return View(customer);
         }
+
         [HttpPost]
         public IActionResult CreateCustomer(CustomerViewModel customer)
         {
@@ -37,25 +38,33 @@ namespace Mini_ERP.Controllers
         [HttpGet]
         public IActionResult EditCustomer(int id)
         {
-            if (customerService.IsExist(id).Result)
+			if (!customerService.IsExist(id).Result)
             {
-                CustomerViewModel customer = this.customerService.GetById(id).Result;
-                return View(customer);
-            }
-            else
-            {
-                return RedirectToAction("AllCustomers");
-            }
-        }
-        [HttpPost]
-        public IActionResult EditCustomer(CustomerViewModel customer)
+				return RedirectToAction("AllCustomers");
+			}
+			CustomerViewModel customer = customerService.GetById(id).Result;
+			return View(customer);
+		}
+		[HttpPost]
+		public IActionResult EditCustomer(CustomerViewModel customer)
+		{
+			if (ModelState.IsValid)
+			{
+				customerService.Edit(customer);
+				return RedirectToAction("AllCustomers");
+			}
+			return View(customer);
+		}
+		[HttpGet]
+        public IActionResult DeleteCustomer(int id)
         {
-            if (ModelState.IsValid)
-            {
-                customerService.Edit(customer);
-                return RedirectToAction("AllCustomers");
-            }
-            return View(customer);
+            
+                customerService.Delete(id);
+				return RedirectToAction("AllCustomers");
+
         }
+
+     
+        
     }
 }

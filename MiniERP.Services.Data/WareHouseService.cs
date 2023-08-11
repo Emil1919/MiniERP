@@ -21,10 +21,13 @@ namespace MiniERP.Services.Data
               WareHouseManager =  dbContext.WareHouses.FirstOrDefault().WareHouseManager,
               Products = await dbContext.Products.Select(x => new ProductViewModel
               {
+                  Id = x.Id,
                   Name = x.Name,
                   Price = x.Price,
                   Quantity = x.Quantity,
                   Description = x.Description,
+                  IsDeleted = x.IsDeleted,
+                  IsNew = x.IsNew,
                   
               }).ToListAsync()
           };

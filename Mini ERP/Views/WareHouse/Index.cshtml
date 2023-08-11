@@ -36,17 +36,26 @@
         <h1 class="mt-4">Warehouse Products</h1>
         <div>
         <p><strong>Total Products:</strong> @Model.Products.Count</p>
-            <p><strong>Total Price of All Products:</strong> @Model.Products.Sum(p => p.Price)*Model.Products.Sum(p => p.Quantity).ToString("C")</p>
-            <p><strong>Total Quantity of All Products:</strong> @Model.Products.Sum(p => p.Quantity)</p>
+            @{
+                decimal totalPriceofAll = 0;
+                foreach (var product in Model.Products)
+				{
+					totalPriceofAll += product.Price * product.Quantity;
+				}
+            }
+            <p><strong>Total Price of All Products:</strong> @totalPriceofAll $</p>
+            <p><strong>Total Quantity of All Products:</strong> @Model.Products.Sum(p => p.Quantity) pcs.</p>
     </div>
         <table class="table product-table">
             <thead>
                 <tr>
                     <th>Product ID</th>
                     <th>Name</th>
+                    <th>Deleted from Portfolio</th>
                     <th>Is new</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -55,9 +64,11 @@
                     <tr>
                         <td>@product.Id</td>
                         <td>@product.Name</td>
+                        <td>@product.IsDeleted</td>
                         <td>@product.IsNew</td>
-                        <td>@product.Price.ToString("C")</td>
+                        <td>@product.Price $</td>
                         <td>@product.Quantity</td>
+                        
                         
                     </tr>
                 }

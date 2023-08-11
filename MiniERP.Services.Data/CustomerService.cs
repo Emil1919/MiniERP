@@ -37,23 +37,26 @@ namespace MiniERP.Services.Data
             return Task.FromResult(true);
         }
 
-        public async Task<bool> Delete(int id)
+        public  Task<bool> Delete(int id)
         {
-            Customer customer = await dbContext.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            Customer customer =  dbContext.Customers.FirstOrDefault(x => x.Id == id);
 
             dbContext.Customers.Remove(customer);
             dbContext.SaveChanges();
-            return true;
-        }
+			return Task.FromResult(true);
+		}
 
         public Task<bool> Edit(CustomerViewModel input)
         {
-            Customer customer = dbContext.Customers.FirstOrDefaultAsync(x => x.Id == input.Id).Result;
+            Customer customer = dbContext.Customers.FirstOrDefault(x => x.Id == input.Id);
             customer.Name = input.Name;
             customer.City = input.City;
             customer.Address = input.Address;
             customer.Manager = input.Manager;
             customer.PhoneNumber = input.PhoneNumber;
+            customer.VatNumber = input.VatNumber;
+            
+            
 
             dbContext.Customers.Update(customer);
             dbContext.SaveChanges();
@@ -79,19 +82,21 @@ namespace MiniERP.Services.Data
             return customers;
         }
 
-        public async Task<CustomerViewModel> GetById(int id)
+        public  Task<CustomerViewModel> GetById(int id)
         {
-           return await dbContext.Customers.Select(x => new CustomerViewModel
-           {
-                Id = x.Id,
-                Name = x.Name,
-                City = x.City,
-                Address = x.Address,
-                Manager = x.Manager,
-                PhoneNumber = x.PhoneNumber,
-                VatNumber = x.VatNumber
-
-            }).FirstOrDefaultAsync(x => x.Id == id);
+           Customer customer = dbContext.Customers.FirstOrDefault(x => x.Id == id);
+			CustomerViewModel customerViewModel = new CustomerViewModel
+            {
+				Id = customer.Id,
+				Name = customer.Name,
+				City = customer.City,
+				Address = customer.Address,
+				Manager = customer.Manager,
+				PhoneNumber = customer.PhoneNumber,
+				VatNumber = customer.VatNumber,
+				TotalTurnover = customer.TotalTurnover
+			};
+			return Task.FromResult(customerViewModel);
         }
 
         public Task<bool> IsExist(int id)

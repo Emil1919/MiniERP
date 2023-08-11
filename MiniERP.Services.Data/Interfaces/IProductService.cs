@@ -13,5 +13,6 @@ namespace MiniERP.Services.Data.Interfaces
 		public  Task <ProductViewModel>  GetProduct(int id);
 		public Task<bool> Exists(int id);
 		public Task EditProduct(ProductViewModel product);
+		public Task DeleteProduct(int id);
 	}
 }

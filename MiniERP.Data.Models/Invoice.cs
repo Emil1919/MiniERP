@@ -37,8 +37,9 @@ namespace MiniERP.Data.Models
 		[Required]
 		public bool IsPaid { get; set; }
         public DateTime DateOfInvoice { get; set; }
+        public bool IsDeleted { get; set; }
 
-        
-        
+
+
     }
 }

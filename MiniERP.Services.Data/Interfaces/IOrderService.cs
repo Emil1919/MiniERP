@@ -18,5 +18,6 @@ namespace MiniERP.Services.Data.Interfaces
 		public Task<OrderViewModel> GetOrder(int id);
 		public Task EditOrder(OrderViewModel order);
 		public Task DeleteOrder(OrderViewModel order);
+		public Task<OrderFormViewModel> GetOrderForm();
 	}
 }

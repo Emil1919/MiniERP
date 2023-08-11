@@ -36,12 +36,13 @@ namespace MiniERP.Data.Models
         public List<ShipingAdress> ShipingAdresses { get; set; } = new List<ShipingAdress>();
 
         public decimal TotalTurnover { get; set; }
+        public bool IsDeleted { get; set; }
 
 
 
 
-        
-        
+
+
 
 
 

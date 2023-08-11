@@ -32,5 +32,6 @@ namespace MiniERP.Data.Models
         [ForeignKey(nameof(Customer))]
         public int CustomersId { get; set; }
         Customer Customer { get; set; } = null!;
+        public bool IsDeleted { get; set; }
     }
 }

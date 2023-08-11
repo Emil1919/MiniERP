@@ -1,4 +1,5 @@
-﻿using Mini_ERP.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Mini_ERP.Data;
 using MiniERP.Data.Models;
 using MiniERP.Services.Data.Interfaces;
 using MiniERP.Web.ViewModels;
@@ -72,5 +73,44 @@ namespace MiniERP.Services.Data
 		{
 			throw new NotImplementedException();
 		}
+		public Task<OrderFormViewModel> GetOrderForm()
+		{
+			OrderFormViewModel newOrderForm = new OrderFormViewModel();
+			
+			newOrderForm.Customers = dbContext.Customers.Select(x => new CustomerViewModel
+			{
+				Id = x.Id,
+				Name = x.Name,
+				Manager = x.Manager,
+				PhoneNumber = x.PhoneNumber,
+				VatNumber = x.VatNumber,
+				Address = x.Address,
+				City = x.City
+
+			}).ToHashSet();
+			newOrderForm.Products = dbContext.Products.Select(p => new ProductViewModel
+			{
+				Id = p.Id,
+				Name = p.Name,
+				Price = p.Price,
+				Quantity = p.Quantity,
+				Image = p.Image,
+				Description = p.Description,
+				IsNew = p.IsNew
+			}).ToList();
+			newOrderForm.SelectedProducts = dbContext.Products.Select(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Quantity = 0,
+                Image = p.Image,
+                Description = p.Description,
+                IsNew = p.IsNew
+            }).ToList();
+
+            return Task.FromResult(newOrderForm);
+		}
+		
 	}
 }

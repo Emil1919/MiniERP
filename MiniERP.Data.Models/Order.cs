@@ -20,5 +20,6 @@ namespace MiniERP.Data.Models
         public Invoice? Invoice { get; set; } = null!;
         
         public List<Product> Products { get; set; } = new List<Product>();
+        public bool IsDeleted { get; set; }
     }
 }

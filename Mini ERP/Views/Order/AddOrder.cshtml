@@ -1,0 +1,53 @@
+﻿@model OrderFormViewModel
+
+<form asp-controller="Orders" asp-action="SubmitOrder" method="post" class="mt-5">
+	<div class="form-group d-flex justify-content-between">
+		<label for="client">Select Client:</label>
+		<select class="form-control" asp-for="@Model.SelectedClientId">
+			<option value="">-- Select Client --</option>
+			@foreach (var customer in Model.Customers)
+			{
+				<option value="@customer.Id">@customer.Name</option>
+			}
+		</select>
+	</div>
+
+
+	<div class="text-center m-3">
+		<img src="https://static.vecteezy.com/system/resources/thumbnails/009/157/893/small/shopping-cart-set-of-shopping-cart-icon-on-white-background-shopping-cart-icon-shopping-cart-design-shopping-cart-icon-sign-shopping-cart-icon-isolated-shopping-cart-symbol-free-vector.jpg" class="rounded" alt="...">
+	</div>
+
+
+	<div class="form-group m-3">
+		<label class="form-control text-lg-center " for="productQuantities">Product Quantities:</label>
+
+		@for (var i = 0; i < Model.Products.Count; i++)
+		{
+			<div class=" form-control">
+
+				<div class="row mb-2">
+					<div class="col">
+
+						<label class="text-black fw-bold">@Model.Products[i].Name</label>
+						<div class="col">
+							<label>Price: @Model.Products[i].Price $</label>
+						</div>
+						<div class="col">
+							<label> Available: @Model.Products[i].Quantity pcs.  Can be seen in the portfolio: @Model.Products[i].IsDeleted</label>
+						</div>
+
+						<input type="hidden" asp-for="SelectedProducts[i].Id" />
+					</div>
+					<div class="col">
+						<label class=" text-success fw-bold">QUANTITY ORDERED:</label>
+						<input class="form-control" type="number" asp-for="SelectedProducts[i].Quantity" />
+					</div>
+				</div>
+			</div>
+		}
+
+	</div>
+
+	<button type="submit" class="btn btn-primary">Submit Order</button>
+</form>
+

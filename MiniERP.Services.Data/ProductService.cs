@@ -47,7 +47,8 @@ namespace MiniERP.Services.Data
 				Price = x.Price,
 				Quantity = x.Quantity,
 				Image = x.Image,
-				IsNew=x.IsNew
+				IsNew=x.IsNew,
+				IsDeleted=x.IsDeleted
 			}).ToListAsync();
 
 
@@ -80,7 +81,7 @@ namespace MiniERP.Services.Data
 
         public async Task EditProduct(ProductViewModel product)
         {
-			var productToEdit =  await dbContext.Products.FirstOrDefaultAsync(x => x.Id == product.Id);
+			var productToEdit = dbContext.Products.FirstOrDefault(x => x.Id == product.Id);
 			productToEdit.Name = product.Name;
 			productToEdit.Description = product.Description;
 			productToEdit.Price = product.Price;
@@ -88,7 +89,15 @@ namespace MiniERP.Services.Data
 			productToEdit.Image = product.Image;
 			productToEdit.IsNew = product.IsNew;
 			dbContext.Products.Update(productToEdit);
-			await dbContext.SaveChangesAsync();
+			dbContext.SaveChanges();
         }
+		public async Task DeleteProduct(int id)
+		{
+			  Product productToDelete =  dbContext.Products.FirstOrDefault(x => x.Id == id);
+				productToDelete.IsDeleted = true;
+			dbContext.Products.Update(productToDelete);
+			dbContext.SaveChanges();
+			
+		}
     }
 }

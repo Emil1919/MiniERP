@@ -17,13 +17,17 @@
 	</div>
 }
 <section style="background-color: white;">
-	<div class="text-center container py-5">
-		<h2 class="mt-1 mb-4">Our product portfolio</h2>
+	<div class="text-center container py-6">
+		<h2 class="mt-1 mb-3">Portfolio</h2>
 
 		<div class="card-group">
 		@for (int i = 0; i < products.Count(); i++)
 		{
-		<partial name="ProductPartial" model="@products[i]" />
+			if (!products[i].IsDeleted)
+			{
+				<partial name="ProductPartial" model="@products[i]" />
+			}
+		
 		}
 		</div>
 	</div>

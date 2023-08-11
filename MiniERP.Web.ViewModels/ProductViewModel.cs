@@ -27,6 +27,7 @@ namespace MiniERP.Web.ViewModels
 		public string? Image { get; set; }
 
         public bool IsNew { get; set; }
+		public bool IsDeleted { get; set; }
 
 
 

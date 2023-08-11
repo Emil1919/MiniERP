@@ -28,6 +28,8 @@ namespace MiniERP.Data.Models
 		[MaxLength(GeneralConstants.URL_MaxLenght)]
         public string? Image { get; set; }
 
+        public bool IsDeleted { get; set; }
+
 
         
 

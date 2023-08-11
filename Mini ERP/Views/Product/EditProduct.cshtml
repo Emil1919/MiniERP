@@ -43,8 +43,9 @@
 			</div>
 			
 			<div class="text-center">
-				<input class="btn btn-warning mt-3" type="submit" value="Edit" />
+				<input class="btn btn-primary mt-3" type="submit" value="Save" />
 			</div>
 		</form>
+		<a class="ml-2 btn btn-danger" asp-area="" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@Model.Id"> Remove from portfolio </a>
 	</div>
 </div>

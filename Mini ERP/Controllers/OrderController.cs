@@ -21,9 +21,11 @@ namespace Mini_ERP.Controllers
 			IEnumerable<OrderViewModel> orders =  orderService.GetAllOrders().Result;
 			return View(orders);
 		}
+		[HttpGet]
 		public IActionResult AddOrder()
 		{
-			return View();
+			OrderFormViewModel orderFormViewModel = orderService.GetOrderForm().Result;
+			return View(orderFormViewModel);
 		}
 		public IActionResult EditOrder()
 		{

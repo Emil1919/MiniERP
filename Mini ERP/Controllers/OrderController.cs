@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Mini_ERP.Data;
 using MiniERP.Services.Data.Interfaces;
 using MiniERP.Web.ViewModels;
-using System.Security.AccessControl;
+
 
 namespace Mini_ERP.Controllers
 {
@@ -39,7 +37,7 @@ namespace Mini_ERP.Controllers
 				}
 				else
 				{
-					// da se dobavi error message
+					
 					return View("ErrorInOrder");
 				}
 			

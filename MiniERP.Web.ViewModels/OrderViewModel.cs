@@ -17,5 +17,7 @@ namespace MiniERP.Web.ViewModels
 		public int CustomersId { get; set; }
 		public CustomerViewModel Customer { get; set; } = null!;
 		public List<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
+		public decimal TotalPrice { get; set; }
+		public bool HasInvoice { get; set; }
 	}
 }

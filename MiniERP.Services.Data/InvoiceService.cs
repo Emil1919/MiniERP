@@ -32,6 +32,7 @@ namespace MiniERP.Services.Data
 			
 				Invoice editedInvoice = dbContext.Invoices.FirstOrDefaultAsync(x => x.InvoiceNumber == invoice.InvoiceNumber).Result;
 				editedInvoice.CustomerId = invoice.CustomerId;
+
 				editedInvoice.OrderId = invoice.OrderId;
 				editedInvoice.TotalPrice = invoice.TotalPrice;
 				editedInvoice.DateOfInvoice = DateTime.Now;
@@ -55,7 +56,9 @@ namespace MiniERP.Services.Data
 				PriceWhitOutVAT = x.PriceWhitOutVAT,
 				TotalPrice = x.TotalPrice,
 				IsPaid = x.IsPaid,
-				DateOfInvoice = x.DateOfInvoice
+				DateOfInvoice = x.DateOfInvoice,
+				CustomerName = x.Customer.Name
+				
 				
 
 			}).ToListAsync();

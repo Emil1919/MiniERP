@@ -5,10 +5,10 @@
 }
 
 <div>
-	<a class="btn btn-primary" asp-area="" asp-controller="Order" asp-action="AddOrder">Add Order</a>
+	<a class="btn btn-primary m-4 " asp-area="" asp-controller="Order" asp-action="AddOrder">Add new Order</a>
 
 </div>
-<table class="table">
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th scope="col">Order Id</th>
@@ -16,6 +16,8 @@
 			<th scope="col">VAT Number</th>
 			<th scope="col">Town</th>
 			<th scope="col">Address</th>
+			<th scope="col">Total Price</th>
+			<th scope="col">Is Invoiced</th>
 			<th scope="col">Option</th>
 		</tr>
 	</thead>
@@ -28,7 +30,12 @@
 				<td>@item.Customer.VatNumber</td>
 				<td>@item.Customer.City</td>
 				<td>@item.Customer.Address</td>
-				<td><a class="btn btn-primary" asp-area="" asp-controller="Order" asp-action="EditOrder" asp-route-id="@item.Id">Edit</a></td>
+				<td>@item.TotalPrice $</td>
+				<td>@item.HasInvoice</td>
+				@if (item.HasInvoice == false)
+				{
+					<td><a class="btn btn-primary" asp-area="" asp-controller="Invoice" asp-action="AddInvoice" asp-route-id="@item.Id">Make Invoice</a></td>
+				}
 			</tr>
 		}
 	</tbody>

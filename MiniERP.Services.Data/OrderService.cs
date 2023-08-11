@@ -44,7 +44,7 @@ namespace MiniERP.Services.Data
 					Product productInBase=dbContext.Products.Find(product.Id);
 					productInBase.Quantity -= product.Quantity;
 					dbContext.Products.Update(productInBase);
-					totalPrice += product.Price * product.Quantity;
+					totalPrice += productInBase.Price * product.Quantity;
 
 					
 				}
@@ -73,6 +73,9 @@ namespace MiniERP.Services.Data
 			IEnumerable<OrderViewModel> orderViewModels = dbContext.Orders.Select(x => new OrderViewModel
 			{
 				Id = x.Id,
+				TotalPrice = x.TotalPrice,
+				HasInvoice=x.HasInvoice,
+				
 				Customer = new CustomerViewModel
 				{
 					Id = x.Customer.Id,
@@ -82,7 +85,7 @@ namespace MiniERP.Services.Data
 					VatNumber = x.Customer.VatNumber,
 					Address = x.Customer.Address,
 					City = x.Customer.City
-					
+
 
 				},
 				Products = x.Products.Select(p => new ProductViewModel

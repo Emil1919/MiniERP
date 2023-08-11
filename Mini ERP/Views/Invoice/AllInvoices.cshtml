@@ -1,34 +1,37 @@
-﻿@model  IEnumerable<InvoiceViewModel>
+﻿@model IEnumerable<InvoiceViewModel>
 @{
-	
+
 	ViewData["Title"] = "All Invoices";
 }
 
-<div> 
-	<a class="btn btn-primary"  asp-area="" asp-controller="Invoice" asp-action="AddInvoice">Add Invoice</a>
-	
+<div>
+	<a class="btn btn-primary m-4" asp-area="" asp-controller="Order" asp-action="AllOrders">Make new Invoice from Order</a>
+
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Invoice Number</th>
+<table class ="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Invoice Number</th>
 			<th scope="col">Date</th>
-            <th scope="col">Customer</th>
-			<th scope="col">TotalPrice</th>
-			<th scope="col">IsPaid</th>
+			<th scope="col">Customer</th>
+			<th scope="col">Total Price</th>
+			<th scope="col">Is Paid</th>
 			<th scope="col">Option</th>
-        </tr>
-    </thead>
-<tbody>
+		</tr>
+	</thead>
+	<tbody>
 		@foreach (var item in Model)
 		{
 			<tr>
 				<th scope="row">@item.InvoiceNumber</th>
 				<td>@item.DateOfInvoice</td>
-				<td>@item.CustomerId</td>
+				<td>@item.CustomerName</td>
 				<td>@item.TotalPrice</td>
 				<td>@item.IsPaid</td>
-				<td><a class="btn btn-primary" asp-area="" asp-controller="Invoice" asp-action="EditInvoice" asp-route-id="@item.InvoiceNumber">Edit</a></td>
+				@if (item.IsPaid == false)
+				{
+					<td><a class="btn btn-success" asp-area="" asp-controller="Invoice" asp-action="PayInvoice" asp-route-id="@item.InvoiceNumber">Pay Invoice</a></td>
+				}
 			</tr>
 		}
 	</tbody>

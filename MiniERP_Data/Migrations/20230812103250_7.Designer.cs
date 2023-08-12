@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mini_ERP.Data;
 
@@ -11,9 +12,10 @@ using Mini_ERP.Data;
 namespace MiniERP.Data.Migrations
 {
     [DbContext(typeof(MiniERP_DbContext))]
-    partial class MiniERP_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230812103250_7")]
+    partial class _7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,15 +145,15 @@ namespace MiniERP.Data.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "15e0a2d2-e2aa-4cce-9860-dc7b74cbed98",
+                            ConcurrencyStamp = "6efda9b5-ff75-493c-bc59-001288798417",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@gmail.com",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDFlmSIhoYt2dUz4PqrclUWHhPs7XOwob86KFhJxOUjUThX8Hem/Fjp0DCxvsJCrQQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENvLShPlXYz/x4HcchPEcgfpuY2XUTnmc8+jzAM0fnx/j2mZtPkGMWIXFAo5cKBXew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6ede4ce5-a3e2-4c17-a34d-6ca1632e8dcb",
+                            SecurityStamp = "44e09cdc-f800-4575-918e-976a77f7dc38",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
@@ -159,15 +161,15 @@ namespace MiniERP.Data.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d4bce6da-2b00-4764-9362-991d00be8a3f",
+                            ConcurrencyStamp = "4fc221db-1900-4b27-acdd-44901bf0307a",
                             Email = "user@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "user@gmail.com",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAELdBGScA8YrKTHWuCTA+uOtju+T8psO0U3fa7Qu0wtuUZe2u50YGCRsObV72d8N0LQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECsyxU+fUAUh+RAU2B4LvFjumwAhcpohuz3UadLyZoYDj0hpwWpLCNWa8lI6BTh3fw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52a8ddbc-3c98-453d-967e-c2acff86f7df",
+                            SecurityStamp = "747e3ffb-7b57-47d8-a7e5-8d3076ef22d1",
                             TwoFactorEnabled = false,
                             UserName = "user"
                         });
@@ -405,7 +407,7 @@ namespace MiniERP.Data.Migrations
                         {
                             Id = 1,
                             CustomerId = 1,
-                            DateOfInvoice = new DateTime(2023, 8, 12, 13, 35, 23, 202, DateTimeKind.Local).AddTicks(1712),
+                            DateOfInvoice = new DateTime(2023, 8, 12, 13, 32, 50, 144, DateTimeKind.Local).AddTicks(1181),
                             InvoiceNumber = 1,
                             IsDeleted = false,
                             IsPaid = false,
@@ -417,7 +419,7 @@ namespace MiniERP.Data.Migrations
                         {
                             Id = 2,
                             CustomerId = 2,
-                            DateOfInvoice = new DateTime(2023, 8, 13, 13, 35, 23, 202, DateTimeKind.Local).AddTicks(1749),
+                            DateOfInvoice = new DateTime(2023, 8, 13, 13, 32, 50, 144, DateTimeKind.Local).AddTicks(1223),
                             InvoiceNumber = 2,
                             IsDeleted = false,
                             IsPaid = false,

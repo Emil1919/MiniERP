@@ -93,7 +93,7 @@ namespace MiniERP.Services.Data
         }
 		public async Task DeleteProduct(int id)
 		{
-			  Product productToDelete =  dbContext.Products.FirstOrDefault(x => x.Id == id);
+			  Product? productToDelete =  dbContext.Products.FirstOrDefault(x => x.Id == id);
 				productToDelete.IsDeleted = true;
 			dbContext.Products.Update(productToDelete);
 			dbContext.SaveChanges();

@@ -59,7 +59,13 @@ namespace Mini_ERP.Controllers
         public IActionResult DeleteCustomer(int id)
         {
             
-                customerService.Delete(id);
+                
+            if (customerService.Delete(id).Result)
+            {
+				return RedirectToAction("AllCustomers");
+			}
+			TempData["Message"] = "Customer has orders and cannot be deleted!";
+
 				return RedirectToAction("AllCustomers");
 
         }

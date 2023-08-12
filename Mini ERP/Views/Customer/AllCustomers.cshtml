@@ -1,11 +1,22 @@
 ﻿@model IEnumerable<CustomerViewModel>
+@using System
+@using System.Web
 
 
 @{
 	ViewData["Title"] = "All Customers";
 	var customers = Model.ToList();
 }
-<a class="btn btn-primary" asp-controller="Customer" asp-action="CreateCustomer">Add Client</a>
+
+<a class="btn btn-primary m-3" asp-controller="Customer" asp-action="CreateCustomer">Add Client</a>
+
+@if (TempData["Message"] != null)
+{
+	<div class="text-lg-center alert-success ">
+		<p>@TempData["Message"]</p>
+	</div>
+
+}
 @if (!customers.Any())
 {
 	<div class="mt-4 p-5 bg-light">
@@ -63,6 +74,7 @@
 	</div>
 </div>
 
-<!-- Add Bootstrap JS and jQuery (required for some Bootstrap features) -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+

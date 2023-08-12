@@ -12,6 +12,7 @@
 		public const int PhoneNumberMax = 15;
 		public const int PhoneNumberMin = 7;
 		public const int URL_MaxLenght = 2048;
+		public const int URL_MinLenght = 10;
 		public const int DescriptionMaxLength = 1000;
 		public const int DescriptionMinLength = 10;
 		public const int AddressMaxLength = 200;

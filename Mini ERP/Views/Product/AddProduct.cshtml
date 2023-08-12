@@ -1,44 +1,62 @@
 ﻿@model ProductViewModel
-<div class="row">
-	<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
-		<form method="post">
-			<div class="form-group">
-				<label asp-for="Name"></label>
-				<input asp-for="Name" class="form-control" placeholder="Name...">
-				<span asp-validation-for="Name" class="small text-danger"></span>
-			</div>
-			
-			<div class="form-group">
-				<label asp-for="Description"></label>
-				<textarea asp-for="Description" rows="4" class="form-control" placeholder="..."></textarea>
-				<span asp-validation-for="Description" class="small text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Image"></label>
-				<input asp-for="Image" class="form-control" placeholder="Your fine URL here...">
+<div class="container mt-5">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="mb-0">NEW Product Form </h4>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+							<form method="post">
+								<div class="form-group">
+									<label asp-for="Name"></label>
+									<input asp-for="Name" class="form-control" placeholder="Name...">
+									<span asp-validation-for="Name" class="small text-danger"></span>
+								</div>
 
-				<span asp-validation-for="Image" class="small text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Price"></label>
-				<input asp-for="Price" class="form-control">
-				<span asp-validation-for="Price" class="small text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Quantity"></label>
-				<input asp-for="Quantity" class="form-control">
-				<span asp-validation-for="Quantity" class="small text-danger"></span>
-			</div>
-			<div class="form-group col-md-3">
-				<div class="form-group">
-					<label asp-for="@Model.IsNew"></label>
-					<input asp-for="@Model.IsNew" type="checkbox" />
+								<div class="form-group">
+									<label asp-for="Description"></label>
+									<textarea asp-for="Description" rows="4" class="form-control" placeholder="..."></textarea>
+									<span asp-validation-for="Description" class="small text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Image"></label>
+									<input asp-for="Image" class="form-control" placeholder="Your fine image URL here...">
+
+									<span asp-validation-for="Image" class="small text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Price"></label>
+									<input asp-for="Price" class="form-control">
+									<span asp-validation-for="Price" class="small text-danger"></span>
+								</div>
+								<div class="form-group">
+									<label asp-for="Quantity"></label>
+									<input asp-for="Quantity" class="form-control">
+									<span asp-validation-for="Quantity" class="small text-danger"></span>
+								</div>
+								<div class="form-group col-md-3">
+									<div class="form-group">
+										<label asp-for="@Model.IsNew"></label>
+										<input asp-for="@Model.IsNew" type="checkbox" />
+									</div>
+								</div>
+
+								<div class="form-group col-md-3">
+									<div class="form-group">
+										<input class="btn btn-primary mt-3" type="submit" value="Save" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<div class="text-center">
-				<input class="btn btn-primary mt-3" type="submit" value="Save" />
-			</div>
-		</form>
+		</div>
 	</div>
 </div>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	}

@@ -1,0 +1,73 @@
+﻿@using Mini_ERP
+@using MiniERP.Web.ViewModels
+@model OwnerCompanyViewModel
+
+
+<h2>Company Report</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">Company Information</div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Address:</dt>
+                    <dd class="col-sm-8">@Model.Address</dd>
+
+                    <!-- Other company information properties -->
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">Warehouse Information</div>
+            <div class="card-body">
+                <dl class="row">
+                    <!-- Warehouse information properties -->
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">Financial Summary</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Total Value:</th>
+                        <td>@Model.Balance</td>
+                    </tr>
+                    <tr>
+                        <th>Bank Account:</th>
+                        <td>@Model.BankAccount</td>
+                    </tr>
+                    <!-- Other financial summary details -->
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">Performance Metrics</div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Total Products:</th>
+                        <td>@Model.TotalProducts</td>
+                    </tr>
+                    <tr>
+                        <th>Total Customers:</th>
+                        <td>@Model.TotalCustomers</td>
+                    </tr>
+                    <!-- Other performance metrics -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

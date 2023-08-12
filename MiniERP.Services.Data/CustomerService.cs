@@ -40,7 +40,10 @@ namespace MiniERP.Services.Data
         public  Task<bool> Delete(int id)
         {
             Customer customer =  dbContext.Customers.FirstOrDefault(x => x.Id == id);
-
+            if (dbContext.Invoices.Where(x=>x.CustomerId==id).Any()|| dbContext.Orders.Where(x => x.CustomersId == id).Any())
+            {
+				return Task.FromResult(false);
+			}
             dbContext.Customers.Remove(customer);
             dbContext.SaveChanges();
 			return Task.FromResult(true);

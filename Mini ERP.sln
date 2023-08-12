@@ -33,6 +33,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{49EF204A-8CCD-4FF9-A48F-9EC95753459C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniERP.Services.Tests", "MiniERP.Services.Tests\MiniERP.Services.Tests.csproj", "{E969C2F9-11B5-4252-A7D8-5CE18E88D966}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E969C2F9-11B5-4252-A7D8-5CE18E88D966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E969C2F9-11B5-4252-A7D8-5CE18E88D966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E969C2F9-11B5-4252-A7D8-5CE18E88D966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E969C2F9-11B5-4252-A7D8-5CE18E88D966}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,7 @@ Global
 		{75A8A1A3-C10C-4BA4-9FCB-10EED4484B66} = {BC548937-6F64-4531-BEF8-03A14407A958}
 		{46DB8656-C80B-443A-B7C5-CFC4A134D046} = {08F849C6-7F5E-4B92-89E5-1708E28BA54A}
 		{49681C3F-86DD-49D6-B9AE-AD906FFDD2D2} = {B3ED3D20-4BE3-483F-AD5E-2D4068BECC05}
+		{E969C2F9-11B5-4252-A7D8-5CE18E88D966} = {49EF204A-8CCD-4FF9-A48F-9EC95753459C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BCDDCAC9-84B1-430A-9672-C015CD409E27}

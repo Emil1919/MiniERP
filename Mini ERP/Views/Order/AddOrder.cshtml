@@ -4,7 +4,7 @@
 	<div class="form-group d-flex justify-content-between">
 		<label for="client">Select Client:</label>
 		<select class="form-control" asp-for="@Model.SelectedClientId">
-			<option value="">-- Select Client --</option>
+			
 			@foreach (var customer in Model.Customers)
 			{
 				<option value="@customer.Id">@customer.Name</option>
@@ -50,4 +50,8 @@
 
 	<button type="submit" class="btn btn-primary">Submit Order</button>
 </form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
+
 

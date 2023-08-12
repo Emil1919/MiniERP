@@ -60,8 +60,14 @@
 							<td>@client.TotalTurnover</td>
 							<td>@client.PhoneNumber</td>
 							<td>
-								<a class="btn btn-warning" asp-controller="Customer" asp-action="EditCustomer" asp-route-id="@client.Id">Edit</a>
-								<a class="btn btn-danger" asp-controller="Customer" asp-action="DeleteCustomer" asp-route-id="@client.Id">Delete</a>
+
+								
+									
+										<a class="btn btn-warning  btn-block" asp-controller="Customer" asp-action="EditCustomer" asp-route-id="@client.Id">Edit</a>
+									
+									
+										<a class="btn btn-danger btn-block " asp-controller="Customer" asp-action="DeleteCustomer" asp-route-id="@client.Id">Delete</a>
+									
 								
 							</td>
 

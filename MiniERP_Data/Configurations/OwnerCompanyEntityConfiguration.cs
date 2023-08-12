@@ -23,7 +23,7 @@ namespace MiniERP.Data.Configurations
                                new OwnerCompany
                                {
                                    Id = 1,
-                                   CompanyName = "MiniERP",
+                                   CompanyName = "GS Group 2000 LTD",
                                    Address = " Sofia Bul. Bulgaria 1",
 
                                    VatNumber = "201174491",

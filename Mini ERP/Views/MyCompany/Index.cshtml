@@ -1,6 +1,6 @@
 ﻿@using Mini_ERP
 @using MiniERP.Web.ViewModels
-@model OwnerCompanyViewModel
+@model OwnerViewModel
 
 
 <h2>Company Report</h2>
@@ -8,13 +8,21 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card mb-4">
-            <div class="card-header">Company Information</div>
+            <div class="card-header">@Model.CompanyName</div>
             <div class="card-body">
                 <dl class="row">
                     <dt class="col-sm-4">Address:</dt>
                     <dd class="col-sm-8">@Model.Address</dd>
 
-                    <!-- Other company information properties -->
+                    
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-4">VAT Number:</dt>
+                    <dd class="col-sm-8">@Model.VatNumber</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-4">General Manager:</dt>
+                    <dd class="col-sm-8">@Model.GeneralManager</dd>
                 </dl>
             </div>
         </div>
@@ -24,7 +32,16 @@
             <div class="card-header">Warehouse Information</div>
             <div class="card-body">
                 <dl class="row">
-                    <!-- Warehouse information properties -->
+                    <dt class="col-sm-4"> Warehouse:</dt>
+                    <dd class="col-sm-8">@Model.WareHouseName</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-4"> Total price of all products:</dt>
+                    <dd class="col-sm-8">@Model.WareHouseTotalValue $</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-4">Total Products:</dt>
+                    <dd class="col-sm-8">@Model.TotalProducts psc</dd>
                 </dl>
             </div>
         </div>
@@ -40,14 +57,14 @@
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>Total Value:</th>
-                        <td>@Model.Balance</td>
+                        <th>Total Balance:</th>
+                        <td>@Model.Balance $</td>
                     </tr>
                     <tr>
                         <th>Bank Account:</th>
                         <td>@Model.BankAccount</td>
                     </tr>
-                    <!-- Other financial summary details -->
+                   
                 </table>
             </div>
         </div>
@@ -58,14 +75,18 @@
             <div class="card-body">
                 <table class="table table-striped">
                     <tr>
-                        <th>Total Products:</th>
-                        <td>@Model.TotalProducts</td>
+                        <th>Total Orders:</th>
+                        <td>@Model.TotalOrders</td>
+                    </tr>
+                    <tr>
+                        <th>Total Invoices:</th>
+                        <td>@Model.TotalInvoices</td>
                     </tr>
                     <tr>
                         <th>Total Customers:</th>
                         <td>@Model.TotalCustomers</td>
                     </tr>
-                    <!-- Other performance metrics -->
+                    
                 </table>
             </div>
         </div>
